@@ -22,13 +22,14 @@ function checkAddressMissingMetamask() {
   }
 }
 
-//Function called for getting Metamask accounts on Goerli. Used in every button in case the user forgets to click the top button.
-function enableMetamaskOnGoerli() {
+//Function called for getting Metamask accounts on LuksoL16. Used in every button in case the user forgets to click the top button.
+function enableMetamaskOnLuksoL16() {
   //Get account details from Metamask wallet.
   getAccount();
-  //Check if user is on the Goerli testnet. If not, alert them to change to Goerli.
-  if(window.ethereum.networkVersion != 5){
-    alert("You are not on the Goerli Testnet! Please switch to Goerli and refresh page.")
+  //Check if user is on the LuksoL16 testnet. If not, alert them to change to LuksoL16.
+  if(window.ethereum.networkVersion != 2828){
+    alert("You are not on the LuksoL16 Testnet! Please switch to LuksoL16 and refresh page.")
+    console.log(window.ethereum.networkVersion)
   }
 }
 
@@ -39,7 +40,7 @@ detectMetamaskInstalled()
 const ethereumButton = document.querySelector('.enableEthereumButton');
 ethereumButton.addEventListener('click', () => {
     detectMetamaskInstalled()
-    enableMetamaskOnGoerli()
+    enableMetamaskOnLuksoL16()
 });
 
 async function getAccount() {
@@ -50,14 +51,16 @@ async function getAccount() {
 //Make Metamask the client side Web3 provider. Needed for tracking live events.
 const web3 = new Web3(window.ethereum)
 //Now build the contract with Web3.
-const contractAddress_JS = '0xdbaA7dfBd9125B7a43457D979B1f8a1Bd8687f37'
+const contractAddress_JS = '0x5B7d3831566c4d82AA3520abe0b19D4aE4AF90d2'
 const contractABI_JS = [{"anonymous":false,"inputs":[],"name":"setEvent","type":"event"},{"inputs":[{"internalType":"uint256","name":"x","type":"uint256"}],"name":"set","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"storedData","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"}]
+// [{"anonymous":false,"inputs":[],"name":"setEvent","type":"event"},{"inputs":[{"internalType":"uint256","name":"x","type":"uint256"}],"name":"set","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"storedData","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"}]
+
 const contractDefined_JS = new web3.eth.Contract(contractABI_JS, contractAddress_JS)
 
 //Get the latest value.
 contractDefined_JS.methods.storedData().call((err, balance) => {
   if(balance === undefined){
-    document.getElementById("getValueStateSmartContract").innerHTML =  "Install Metamask and select Goerli Testnet to have a Web3 provider to read blockchain data."
+    document.getElementById("getValueStateSmartContract").innerHTML =  "Install Metamask and select LuksoL16 Testnet to have a Web3 provider to read blockchain data."
   }
   else{
     document.getElementById("getValueStateSmartContract").innerHTML =  balance

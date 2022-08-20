@@ -5,5 +5,5 @@ Github pages site hosting: https://luksoracle.github.io/frontend/
 Template being modified, work in progress.
 
 Run locally for testing with:
-
+npm install http-server (if not installed)
            http-server
