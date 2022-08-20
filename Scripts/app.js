@@ -51,14 +51,15 @@ async function getAccount() {
 //Make Metamask the client side Web3 provider. Needed for tracking live events.
 const web3 = new Web3(window.ethereum)
 //Now build the contract with Web3.
-const contractAddress_JS = '0x5B7d3831566c4d82AA3520abe0b19D4aE4AF90d2'
-const contractABI_JS = [{"anonymous":false,"inputs":[],"name":"setEvent","type":"event"},{"inputs":[{"internalType":"uint256","name":"x","type":"uint256"}],"name":"set","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"storedData","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"}]
+const contractAddress_JS = '0xe33EE68Fc5477Ea95F4897b67d3E763b7F74FC52'
+const contractABI_JS = [{"anonymous":false,"inputs":[],"name":"faucetWithdraw","type":"event"},{"inputs":[],"name":"withdrawDirect","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"relayCaller","type":"address"}],"name":"withdrawRelay","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"relayAddress","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"","type":"address"}],"name":"userPreviousWithdrawTime","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"}]
+
 // [{"anonymous":false,"inputs":[],"name":"setEvent","type":"event"},{"inputs":[{"internalType":"uint256","name":"x","type":"uint256"}],"name":"set","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"storedData","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"}]
 
 const contractDefined_JS = new web3.eth.Contract(contractABI_JS, contractAddress_JS)
 
 //Get the latest value.
-contractDefined_JS.methods.storedData().call((err, balance) => {
+contractDefined_JS.methods.userPreviousWithdrawTime('0xa6d76cb2Ad1C948BC8888D348E33c05E4fA90475').call((err, balance) => {
   if(balance === undefined){
     document.getElementById("getValueStateSmartContract").innerHTML =  "Install Metamask and select LuksoL16 Testnet to have a Web3 provider to read blockchain data."
   }
@@ -72,11 +73,11 @@ const changeStateInContractEvent = document.querySelector('.changeStateInContrac
 changeStateInContractEvent.addEventListener('click', () => {
   checkAddressMissingMetamask()
   //uint cannot be negative, force to absolute value.
-  var inputContractText =  Math.abs(document.getElementById("setValueSmartContract").value);
-  //Check if value is an integer. If not throw an error.
-  if(Number.isInteger(inputContractText) == false){
-    alert("Input value is not an integer! Only put an integer for input.")
-  }
+//  var inputContractText =  Math.abs(document.getElementById("setValueSmartContract").value);
+//  Check if value is an integer. If not throw an error.
+//  if(Number.isInteger(inputContractText) == false){
+//    alert("Input value is not an integer! Only put an integer for input.")
+//  }
   ethereum
     .request({
       method: 'eth_sendTransaction',
@@ -84,7 +85,7 @@ changeStateInContractEvent.addEventListener('click', () => {
         {
           from: accounts[0],
           to: contractAddress_JS,
-          data: contractDefined_JS.methods.set(inputContractText).encodeABI()
+          data: contractDefined_JS.methods.withdrawDirect().encodeABI()
         },
       ],
     })
@@ -99,7 +100,7 @@ contractDefined_JS.events.setEvent({
  .on('data', function(eventResult){
    console.log(eventResult)
    //Call the get function to get the most accurate present state for the value.
-   contractDefined_JS.methods.storedData().call((err, balance) => {
+   contractDefined_JS.methods.userPreviousWithdrawTime('0xa6d76cb2Ad1C948BC8888D348E33c05E4fA90475').call((err, balance) => {
       document.getElementById("getValueStateSmartContract").innerHTML =  balance
      })
    })
