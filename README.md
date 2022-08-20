@@ -1,3 +1,5 @@
-# frontend
+Template being modified, work in progress.
 
-React Javascript website development.
+Run locally for testing with:
+
+           http-server
