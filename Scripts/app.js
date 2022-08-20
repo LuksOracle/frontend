@@ -4,6 +4,8 @@
 //Empty array to be filled once Metamask is called.
 let accounts = [];
 document.getElementById("getCurrentAccountConnected").innerHTML =  "None. Please click the top button to connect."
+document.getElementById("getValueStateSmartContract").innerHTML =  "Please connect wallet first to check withdrawal time."
+
 
 //If Metamask is not detected the user will be told to install Metamask.
 function detectMetamaskInstalled(){
@@ -33,6 +35,24 @@ function enableMetamaskOnLuksoL16() {
   }
 }
 
+//Get the latest value.
+function checkLastDateWithdrawn() {
+  contractDefined_JS.methods.userPreviousWithdrawTime(accounts[0]).call((err, balance) => {
+    
+    if(balance === undefined){
+      document.getElementById("getValueStateSmartContract").innerHTML =  "Install Metamask and select LuksoL16 Testnet to have a Web3 provider to read blockchain data."
+    }
+    else{
+      if (balance != 0) {
+        balance = new Date(balance * 1000).toLocaleString()
+        document.getElementById("getValueStateSmartContract").innerHTML =  balance
+      }
+      else {
+        document.getElementById("getValueStateSmartContract").innerHTML = "You have not yet withdrawn from the Lukso L16 LINK faucet."
+      } 
+    }
+  })}
+
 //When the page is opened check for error handling issues.
 detectMetamaskInstalled()
 
@@ -46,6 +66,7 @@ ethereumButton.addEventListener('click', () => {
 async function getAccount() {
   accounts = await ethereum.request({ method: 'eth_requestAccounts' });
   document.getElementById("getCurrentAccountConnected").innerHTML = accounts[0]
+  checkLastDateWithdrawn()
 }
 
 //Make Metamask the client side Web3 provider. Needed for tracking live events.
@@ -57,16 +78,6 @@ const contractABI_JS = [{"anonymous":false,"inputs":[],"name":"faucetWithdraw","
 // [{"anonymous":false,"inputs":[],"name":"setEvent","type":"event"},{"inputs":[{"internalType":"uint256","name":"x","type":"uint256"}],"name":"set","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"storedData","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"}]
 
 const contractDefined_JS = new web3.eth.Contract(contractABI_JS, contractAddress_JS)
-
-//Get the latest value.
-contractDefined_JS.methods.userPreviousWithdrawTime('0xa6d76cb2Ad1C948BC8888D348E33c05E4fA90475').call((err, balance) => {
-  if(balance === undefined){
-    document.getElementById("getValueStateSmartContract").innerHTML =  "Install Metamask and select LuksoL16 Testnet to have a Web3 provider to read blockchain data."
-  }
-  else{
-    document.getElementById("getValueStateSmartContract").innerHTML =  balance
-  }
-})
 
 // MODIFY CONTRACT STATE WITH SET FUNCTION WITH PREDEFINED DATA FROM WEB3.JS
 const changeStateInContractEvent = document.querySelector('.changeStateInContractEvent');
@@ -100,9 +111,7 @@ contractDefined_JS.events.setEvent({
  .on('data', function(eventResult){
    console.log(eventResult)
    //Call the get function to get the most accurate present state for the value.
-   contractDefined_JS.methods.userPreviousWithdrawTime('0xa6d76cb2Ad1C948BC8888D348E33c05E4fA90475').call((err, balance) => {
-      document.getElementById("getValueStateSmartContract").innerHTML =  balance
-     })
+  checkLastDateWithdrawn()
    })
  .on('changed', function(eventResult){
      // remove event from local database
