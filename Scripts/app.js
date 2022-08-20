@@ -3,7 +3,7 @@
 
 //Empty array to be filled once Metamask is called.
 let accounts = [];
-document.getElementById("getCurrentAccountConnected").innerHTML =  "None. Please click the top button to connect."
+document.getElementById("enableEthereumButton").innerHTML =  "Connect Metamask"
 document.getElementById("getValueStateSmartContract").innerHTML =  "Please connect wallet first to check withdrawal time."
 
 //If Metamask is not detected the user will be told to install Metamask.
@@ -57,7 +57,7 @@ function checkLastDateWithdrawn() {
 detectMetamaskInstalled()
 
 //Connect to Metamask.
-const ethereumButton = document.querySelector('.enableEthereumButton');
+const ethereumButton = document.querySelector('#enableEthereumButton');
 ethereumButton.addEventListener('click', () => {
     detectMetamaskInstalled()
     enableMetamaskOnLuksoL16()
@@ -65,7 +65,7 @@ ethereumButton.addEventListener('click', () => {
 
 async function getAccount() {
   accounts = await ethereum.request({ method: 'eth_requestAccounts' });
-  document.getElementById("getCurrentAccountConnected").innerHTML = accounts[0]
+  document.getElementById("enableEthereumButton").innerText = accounts[0].substr(0,5) + "..." +  accounts[0].substr(38,4)
   checkLastDateWithdrawn()
 }
 
