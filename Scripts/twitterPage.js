@@ -34,6 +34,25 @@ function enableMetamaskOnLuksoL16() {
   }
 }
 
+function checkTwitterAddressOwner() {
+  twitter_id_check=20
+  console.log
+  contractDefined_JS.methods.twitterIDaddress(twitter_id_check).call((err, balance_) => {
+
+  if(balance_ === undefined){
+    document.getElementById("getValueStateSmartContractAddress").innerHTML =  "Install Metamask and select LuksoL16 Testnet to read blockchain data."
+  }
+  else{
+    if (balance_ != 0) {
+      document.getElementById("getValueStateSmartContractAddress").innerHTML = balance_
+    }
+    else {
+      document.getElementById("getValueStateSmartContractAddress").innerHTML = "There is no Twitter associated to this account yet."
+    }
+  }
+})}
+  
+
 //Get the latest value.
 function checkVerifiedTwitter() {
 
@@ -66,13 +85,16 @@ async function getAccount() {
   accounts = await ethereum.request({ method: 'eth_requestAccounts' });
   document.getElementById("enableEthereumButton").innerText = accounts[0].substr(0,5) + "..." +  accounts[0].substr(38,4)
   checkVerifiedTwitter()
+  checkTwitterAddressOwner()
 }
 
 //Make Metamask the client side Web3 provider. Needed for tracking live events.
 const web3 = new Web3(window.ethereum)
 //Now build the contract with Web3.
-const contractAddress_JS = '0xbC3AbEcBBC96f6Bb37516ee513133a51bEAF1Cd9'
-const contractABI_JS = [{"inputs":[{"internalType":"uint256","name":"mockRequestReturnValue","type":"uint256"}],"name":"mockRequestAnswer","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint96","name":"twitter_id_Request","type":"uint96"}],"name":"requestTweetAddressCompare","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"_addressFromTweetMatches","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"","type":"address"}],"name":"addressTwitterID","outputs":[{"internalType":"uint96","name":"","type":"uint96"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"tempRequestAddress","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"tempTwitter_id","outputs":[{"internalType":"uint96","name":"","type":"uint96"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint96","name":"","type":"uint96"}],"name":"twitterIDaddress","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"}]
+const contractAddress_JS = '0xf40b1F0101db074f4EB8aEeeD495B32af7DC21d8'
+const contractABI_JS = [{"anonymous":false,"inputs":[],"name":"tweetRequestEvent","type":"event"},{"inputs":[],"name":"mockFulfillLogic","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint256","name":"mockRequestReturnValue","type":"uint256"}],"name":"mockRequestAnswer","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint96","name":"twitter_id_Request","type":"uint96"}],"name":"requestTweetAddressCompare","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint96","name":"_twitter_id","type":"uint96"}],"name":"resolveToTwitterID","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"_addressFromTweetMatches","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"","type":"address"}],"name":"addressTwitterID","outputs":[{"internalType":"uint96","name":"","type":"uint96"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"tempRequestAddress","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"tempTwitter_id","outputs":[{"internalType":"uint96","name":"","type":"uint96"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint96","name":"","type":"uint96"}],"name":"twitterIDaddress","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"}]
+
+//[{"inputs":[{"internalType":"uint256","name":"mockRequestReturnValue","type":"uint256"}],"name":"mockRequestAnswer","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint96","name":"twitter_id_Request","type":"uint96"}],"name":"requestTweetAddressCompare","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"_addressFromTweetMatches","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"","type":"address"}],"name":"addressTwitterID","outputs":[{"internalType":"uint96","name":"","type":"uint96"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"tempRequestAddress","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"tempTwitter_id","outputs":[{"internalType":"uint96","name":"","type":"uint96"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint96","name":"","type":"uint96"}],"name":"twitterIDaddress","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"}]
 
 const contractDefined_JS = new web3.eth.Contract(contractABI_JS, contractAddress_JS)
 
