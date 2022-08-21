@@ -34,10 +34,9 @@ function enableMetamaskOnLuksoL16() {
   }
 }
 
-function checkTwitterAddressOwner() {
-  twitter_id_check=20
-  console.log
-  contractDefined_JS.methods.twitterIDaddress(twitter_id_check).call((err, balance_) => {
+function checkTwitterAddressOwner(twitter_ID) {
+  //"readStateInTwitterIDAddress"
+  contractDefined_JS.methods.twitterIDaddress(twitter_ID).call((err, balance_) => {
 
   if(balance_ === undefined){
     document.getElementById("getValueStateSmartContractAddress").innerHTML =  "Install Metamask and select LuksoL16 Testnet to read blockchain data."
@@ -85,7 +84,6 @@ async function getAccount() {
   accounts = await ethereum.request({ method: 'eth_requestAccounts' });
   document.getElementById("enableEthereumButton").innerText = accounts[0].substr(0,5) + "..." +  accounts[0].substr(38,4)
   checkVerifiedTwitter()
-  checkTwitterAddressOwner()
 }
 
 //Make Metamask the client side Web3 provider. Needed for tracking live events.
@@ -135,6 +133,20 @@ changeStateInContractEvent.addEventListener('click', () => {
     })
     .then((txHash) => console.log(txHash))
     .catch((error) => console.error);
+});
+
+// MODIFY CONTRACT STATE WITH SET FUNCTION WITH PREDEFINED DATA FROM WEB3.JS
+const readStateInTwitterIDAddressEvent = document.querySelector('.readStateInTwitterIDAddressEvent');
+readStateInTwitterIDAddressEvent.addEventListener('click', () => {
+  checkAddressMissingMetamask()
+  var twitter_ID = Math.abs(document.getElementById("setValueSmartContract").value);
+  checkTwitterAddressOwner(twitter_ID);
+  //uint cannot be negative, force to absolute value.
+//  var inputContractText =  Math.abs(document.getElementById("setValueSmartContract").value);
+//  Check if value is an integer. If not throw an error.
+//  if(Number.isInteger(inputContractText) == false){
+//    alert("Input value is not an integer! Only put an integer for input.")
+//  }
 });
 
 //Get the latest event. Once the event is triggered, website will update value.
