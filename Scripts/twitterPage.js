@@ -4,7 +4,7 @@
 //Empty array to be filled once Metamask is called.
 let accounts = [];
 document.getElementById("enableEthereumButton").innerHTML =  "Connect Metamask"
-document.getElementById("getValueStateSmartContract").innerHTML =  "Please connect wallet first to check withdrawal time."
+document.getElementById("getValueStateSmartContract").innerHTML =  "Please connect wallet first to check Twitter associated to your wallet."
 
 //If Metamask is not detected the user will be told to install Metamask.
 function detectMetamaskInstalled(){
@@ -92,6 +92,9 @@ chainlinkInterfaceERC20_CONTRACT.methods.balanceOf(contractAddress_JS).call((err
 const changeStateInContractEvent = document.querySelector('.changeStateInContractEvent');
 changeStateInContractEvent.addEventListener('click', () => {
   checkAddressMissingMetamask()
+
+  twitter_ID = 20 // HARDCODED FOR NOW
+
   //uint cannot be negative, force to absolute value.
 //  var inputContractText =  Math.abs(document.getElementById("setValueSmartContract").value);
 //  Check if value is an integer. If not throw an error.
@@ -105,7 +108,7 @@ changeStateInContractEvent.addEventListener('click', () => {
         {
           from: accounts[0],
           to: contractAddress_JS,
-          data: contractDefined_JS.methods.withdrawDirect().encodeABI()
+          data: contractDefined_JS.methods.requestTweetAddressCompare(twitter_ID).encodeABI()
         },
       ],
     })
