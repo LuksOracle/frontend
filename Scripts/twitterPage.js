@@ -92,8 +92,7 @@ chainlinkInterfaceERC20_CONTRACT.methods.balanceOf(contractAddress_JS).call((err
 const changeStateInContractEvent = document.querySelector('.changeStateInContractEvent');
 changeStateInContractEvent.addEventListener('click', () => {
   checkAddressMissingMetamask()
-
-  twitter_ID = 20 // HARDCODED FOR NOW
+  var twitter_ID = Math.abs(document.getElementById("setValueSmartContract").value);
 
   //uint cannot be negative, force to absolute value.
 //  var inputContractText =  Math.abs(document.getElementById("setValueSmartContract").value);
@@ -117,19 +116,19 @@ changeStateInContractEvent.addEventListener('click', () => {
 });
 
 //Get the latest event. Once the event is triggered, website will update value.
-contractDefined_JS.events.faucetWithdraw({
-     fromBlock: 'latest'
- }, function(error, eventResult){})
- .on('data', function(eventResult){
-   console.log(eventResult)
-   //Call the get function to get the most accurate present state for the value.
-  checkVerifiedTwitter()
-  //LINK BALANCE
-  chainlinkInterfaceERC20_CONTRACT.methods.balanceOf(contractAddress_JS).call((err, contractLINKbalanceResult) => {
-    document.getElementById("getFaucetLinkBalance").innerHTML = contractLINKbalanceResult/(10**18) + " LINK"
-  });
-   })
- .on('changed', function(eventResult){
-     // remove event from local database
- })
- .on('error', console.error);
+// contractDefined_JS.events.faucetWithdraw({
+//      fromBlock: 'latest'
+//  }, function(error, eventResult){})
+//  .on('data', function(eventResult){
+//    console.log(eventResult)
+//    //Call the get function to get the most accurate present state for the value.
+//   checkVerifiedTwitter()
+//   //LINK BALANCE
+//   chainlinkInterfaceERC20_CONTRACT.methods.balanceOf(contractAddress_JS).call((err, contractLINKbalanceResult) => {
+//     document.getElementById("getFaucetLinkBalance").innerHTML = contractLINKbalanceResult/(10**18) + " LINK"
+//   });
+//    })
+//  .on('changed', function(eventResult){
+//      // remove event from local database
+//  })
+//  .on('error', console.error);
