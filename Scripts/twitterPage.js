@@ -3,7 +3,7 @@
 
 //Empty array to be filled once Metamask is called.
 let accounts = [];
-document.getElementById("enableEthereumButton").innerHTML =  "TWITWTEHIWUH Metamask"
+document.getElementById("enableEthereumButton").innerHTML =  "Connect Metamask"
 document.getElementById("getValueStateSmartContract").innerHTML =  "Please connect wallet first to check withdrawal time."
 
 //If Metamask is not detected the user will be told to install Metamask.
@@ -34,21 +34,20 @@ function enableMetamaskOnLuksoL16() {
   }
 }
 
-
 //Get the latest value.
-function checkLastDateWithdrawn() {
-  contractDefined_JS.methods.userPreviousWithdrawTime(accounts[0]).call((err, balance) => {
+function checkVerifiedTwitter() {
+
+  contractDefined_JS.methods.addressTwitterID(accounts[0]).call((err, balance) => {
 
     if(balance === undefined){
-      document.getElementById("getValueStateSmartContract").innerHTML =  "Install Metamask and select LuksoL16 Testnet to have a Web3 provider to read blockchain data."
+      document.getElementById("getValueStateSmartContract").innerHTML =  "Install Metamask and select LuksoL16 Testnet to read blockchain data."
     }
     else{
       if (balance != 0) {
-        balance = new Date(balance * 1000).toLocaleString()
-        document.getElementById("getValueStateSmartContract").innerHTML =  balance
+        document.getElementById("getValueStateSmartContract").innerHTML = "https://twitter.com/i/user/"+balance
       }
       else {
-        document.getElementById("getValueStateSmartContract").innerHTML = "You have not yet withdrawn from the Lukso L16 LINK faucet."
+        document.getElementById("getValueStateSmartContract").innerHTML = "There is no Twitter associated to this account yet."
       }
     }
   })}
@@ -66,14 +65,14 @@ ethereumButton.addEventListener('click', () => {
 async function getAccount() {
   accounts = await ethereum.request({ method: 'eth_requestAccounts' });
   document.getElementById("enableEthereumButton").innerText = accounts[0].substr(0,5) + "..." +  accounts[0].substr(38,4)
-  checkLastDateWithdrawn()
+  checkVerifiedTwitter()
 }
 
 //Make Metamask the client side Web3 provider. Needed for tracking live events.
 const web3 = new Web3(window.ethereum)
 //Now build the contract with Web3.
-const contractAddress_JS = '0xe33EE68Fc5477Ea95F4897b67d3E763b7F74FC52'
-const contractABI_JS = [{"anonymous":false,"inputs":[],"name":"faucetWithdraw","type":"event"},{"inputs":[],"name":"withdrawDirect","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"relayCaller","type":"address"}],"name":"withdrawRelay","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"relayAddress","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"","type":"address"}],"name":"userPreviousWithdrawTime","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"}]
+const contractAddress_JS = '0xbC3AbEcBBC96f6Bb37516ee513133a51bEAF1Cd9'
+const contractABI_JS = [{"inputs":[{"internalType":"uint256","name":"mockRequestReturnValue","type":"uint256"}],"name":"mockRequestAnswer","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint96","name":"twitter_id_Request","type":"uint96"}],"name":"requestTweetAddressCompare","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"_addressFromTweetMatches","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"","type":"address"}],"name":"addressTwitterID","outputs":[{"internalType":"uint96","name":"","type":"uint96"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"tempRequestAddress","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"tempTwitter_id","outputs":[{"internalType":"uint96","name":"","type":"uint96"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint96","name":"","type":"uint96"}],"name":"twitterIDaddress","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"}]
 
 const contractDefined_JS = new web3.eth.Contract(contractABI_JS, contractAddress_JS)
 
@@ -121,7 +120,7 @@ contractDefined_JS.events.faucetWithdraw({
  .on('data', function(eventResult){
    console.log(eventResult)
    //Call the get function to get the most accurate present state for the value.
-  checkLastDateWithdrawn()
+  checkVerifiedTwitter()
   //LINK BALANCE
   chainlinkInterfaceERC20_CONTRACT.methods.balanceOf(contractAddress_JS).call((err, contractLINKbalanceResult) => {
     document.getElementById("getFaucetLinkBalance").innerHTML = contractLINKbalanceResult/(10**18) + " LINK"
