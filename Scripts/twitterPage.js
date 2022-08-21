@@ -149,6 +149,34 @@ readStateInTwitterIDAddressEvent.addEventListener('click', () => {
 //  }
 });
 
+// MODIFY CONTRACT STATE WITH SET FUNCTION WITH PREDEFINED DATA FROM WEB3.JS
+const changeResolverInContractEvent = document.querySelector('.changeResolverInContractEvent');
+changeResolverInContractEvent.addEventListener('click', () => {
+  checkAddressMissingMetamask()
+  var twitter_ID = Math.abs(document.getElementById("setValueSmartContract").value);
+
+  //uint cannot be negative, force to absolute value.
+//  var inputContractText =  Math.abs(document.getElementById("setValueSmartContract").value);
+//  Check if value is an integer. If not throw an error.
+//  if(Number.isInteger(inputContractText) == false){
+//    alert("Input value is not an integer! Only put an integer for input.")
+//  }
+
+  ethereum
+    .request({
+      method: 'eth_sendTransaction',
+      params: [
+        {
+          from: accounts[0],
+          to: contractAddress_JS,
+          data: contractDefined_JS.methods.resolveToTwitterID(twitter_ID).encodeABI()
+        },
+      ],
+    })
+    .then((txHash) => console.log(txHash))
+    .catch((error) => console.error);
+});
+
 //Get the latest event. Once the event is triggered, website will update value.
 // contractDefined_JS.events.faucetWithdraw({
 //      fromBlock: 'latest'
