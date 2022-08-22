@@ -15,7 +15,7 @@ Prove your Twitter and wallet connection using a Chainlink oracle request.
 
 Proof contract works when Chainlink node runs with verified Twitter IDs:
 
-1438606749389541377 (https://twitter.com/i/user/1438606749389541377) (https://github.com/MarcusWentz)
+:warning: Need to fix Bigint values in frontend 1438606749389541377 (https://twitter.com/i/user/1438606749389541377) (https://github.com/MarcusWentz) :warning:
 
 1018093644 (https://twitter.com/i/user/1018093644) (https://github.com/m-r-g-t)
 
@@ -31,5 +31,11 @@ Github pages site hosting: https://luksoracle.github.io/frontend/
 Template being modified, work in progress.
 
 Run locally for testing with:
-npm install http-server (if not installed)
-           http-server
+
+       npm install http-server
+       http-server
+
+## :camera: Slide presentation: 
+
+https://docs.google.com/presentation/d/1s1yyrKdPA75_q2RZRx3A8FxvknriruWgnGQb9-7QVNE/edit?usp=sharing
+
