@@ -1,11 +1,11 @@
 # LuksOracle Website
 
-## Faucet
+## Faucet :fountain:
 
 Get 20 Chainlink (LINK) tokens every 12 hours.
 Chainlink tokens allow you to pay Chainlink oracles for services, like offchain data requests to be stored on chain.
 
-## Twitter Name Space
+## Twitter Name Space :bird:
 
 Prove your Twitter and wallet connection using a Chainlink oracle request.
 
