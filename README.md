@@ -2,7 +2,8 @@
 
 ## Faucet
 
-Get 20 LINK every 12 hours.
+Get 20 Chainlink (LINK) tokens every 12 hours.
+Chainlink tokens allow you to pay Chainlink oracles for services, like offchain data requests to be stored on chain.
 
 ## Twitter Name Space
 
