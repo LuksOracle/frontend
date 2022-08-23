@@ -50,7 +50,7 @@ function checkTwitterAddressOwner(twitter_ID) {
     }
   }
 })}
-  
+
 
 //Get the latest value.
 function checkVerifiedTwitter() {
@@ -112,7 +112,7 @@ chainlinkInterfaceERC20_CONTRACT.methods.balanceOf(contractAddress_JS).call((err
 const changeStateInContractEvent = document.querySelector('.changeStateInContractEvent');
 changeStateInContractEvent.addEventListener('click', () => {
   checkAddressMissingMetamask()
-  var twitter_ID = Math.abs(document.getElementById("setValueSmartContract").value);
+  var twitter_ID = document.getElementById("setValueSmartContract").value.toString();
 
   //uint cannot be negative, force to absolute value.
 //  var inputContractText =  Math.abs(document.getElementById("setValueSmartContract").value);
@@ -139,7 +139,7 @@ changeStateInContractEvent.addEventListener('click', () => {
 const readStateInTwitterIDAddressEvent = document.querySelector('.readStateInTwitterIDAddressEvent');
 readStateInTwitterIDAddressEvent.addEventListener('click', () => {
   checkAddressMissingMetamask()
-  var twitter_ID = Math.abs(document.getElementById("setValueSmartContract").value);
+  var twitter_ID = document.getElementById("setValueSmartContract").value.toString();
   checkTwitterAddressOwner(twitter_ID);
   //uint cannot be negative, force to absolute value.
 //  var inputContractText =  Math.abs(document.getElementById("setValueSmartContract").value);
@@ -153,7 +153,7 @@ readStateInTwitterIDAddressEvent.addEventListener('click', () => {
 const changeResolverInContractEvent = document.querySelector('.changeResolverInContractEvent');
 changeResolverInContractEvent.addEventListener('click', () => {
   checkAddressMissingMetamask()
-  var twitter_ID = Math.abs(document.getElementById("setValueSmartContract").value);
+  var twitter_ID = document.getElementById("setValueSmartContract").value.toString();
 
   //uint cannot be negative, force to absolute value.
 //  var inputContractText =  Math.abs(document.getElementById("setValueSmartContract").value);
@@ -177,20 +177,20 @@ changeResolverInContractEvent.addEventListener('click', () => {
     .catch((error) => console.error);
 });
 
-//Get the latest event. Once the event is triggered, website will update value.
-// contractDefined_JS.events.faucetWithdraw({
-//      fromBlock: 'latest'
-//  }, function(error, eventResult){})
-//  .on('data', function(eventResult){
-//    console.log(eventResult)
-//    //Call the get function to get the most accurate present state for the value.
-//   checkVerifiedTwitter()
-//   //LINK BALANCE
-//   chainlinkInterfaceERC20_CONTRACT.methods.balanceOf(contractAddress_JS).call((err, contractLINKbalanceResult) => {
-//     document.getElementById("getFaucetLinkBalance").innerHTML = contractLINKbalanceResult/(10**18) + " LINK"
-//   });
-//    })
-//  .on('changed', function(eventResult){
-//      // remove event from local database
-//  })
-//  .on('error', console.error);
+// Get the latest event. Once the event is triggered, website will update value.
+contractDefined_JS.events.tweetRequestEvent({
+     fromBlock: 'latest'
+ }, function(error, eventResult){})
+ .on('data', function(eventResult){
+   console.log(eventResult)
+   //Call the get function to get the most accurate present state for the value.
+  checkVerifiedTwitter()
+  //LINK BALANCE
+  chainlinkInterfaceERC20_CONTRACT.methods.balanceOf(contractAddress_JS).call((err, contractLINKbalanceResult) => {
+    document.getElementById("getFaucetLinkBalance").innerHTML = contractLINKbalanceResult/(10**18) + " LINK"
+  });
+   })
+ .on('changed', function(eventResult){
+     // remove event from local database
+ })
+ .on('error', console.error);
