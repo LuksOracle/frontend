@@ -15,7 +15,7 @@ Prove your Twitter and wallet connection using a Chainlink oracle request.
 
 Proof contract works when Chainlink node runs with verified Twitter IDs:
 
-:warning: Need to fix Bigint values in frontend 1438606749389541377 (https://twitter.com/i/user/1438606749389541377) (https://github.com/MarcusWentz) :warning:
+1438606749389541377 (https://twitter.com/i/user/1438606749389541377) (https://github.com/MarcusWentz) 
 
 1018093644 (https://twitter.com/i/user/1018093644) (https://github.com/m-r-g-t)
 
