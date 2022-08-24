@@ -9,18 +9,17 @@ Chainlink tokens allow you to pay Chainlink oracles for services, like offchain 
 
 Prove your Twitter and wallet connection using a Chainlink oracle request.
 
-:warning: Contract must have at least 1 LINK token to do a request :warning:
-
-:warning: Chainlink node is run locally and will not answer requests if offline during a request :warning:
-
 Proof contract works when Chainlink node runs with verified Twitter IDs:
 
 1438606749389541377 (https://twitter.com/i/user/1438606749389541377) (https://github.com/MarcusWentz) 
 
 1018093644 (https://twitter.com/i/user/1018093644) (https://github.com/m-r-g-t)
 
-
 If you hold multiple Twitter accounts to one wallet, you can change which Twitter account your wallet directly resolves too as well.
+
+:warning: Contract must have at least 1 LINK token to do a request :warning:
+
+:warning: Chainlink node is run locally and will not answer requests if offline during a request :warning:
 
 ## Website Link 
 
