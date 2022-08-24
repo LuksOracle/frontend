@@ -3,7 +3,10 @@
 ## :fountain: LINK Faucet
 
 Get 20 Chainlink (LINK) tokens every 12 hours.
+
 Chainlink tokens allow you to pay Chainlink oracles for services, like offchain data requests to be stored on chain.
+
+:warning: We have a UP relay option for the faucet, but we don't have this shown in the frontend. See the scripts in the contracts repo for more info. :warning:
 
 ## :bird: Twitter Name Space
 
@@ -20,6 +23,8 @@ If you hold multiple Twitter accounts to one wallet, you can change which Twitte
 :warning: Contract must have at least 1 LINK token to do a request :warning:
 
 :warning: Chainlink node is run locally and will not answer requests if offline during a request :warning:
+
+:warning: We can verify Universal Profiles for Twitter IDs, but we don't have this shown in the frontend. See the scripts in the contracts repo for more info. :warning:
 
 ## Website Link 
 
