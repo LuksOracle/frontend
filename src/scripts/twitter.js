@@ -3,8 +3,8 @@
 
 //Empty array to be filled once Metamask is called.
 let accounts = [];
-document.getElementById("enableEthereumButton").innerHTML =  "Connect Metamask"
-document.getElementById("getValueStateSmartContract").innerHTML =  "Please connect wallet first to check Twitter associated to your wallet."
+document.getElementById("enableEthereumButton").innerHTML;
+document.getElementById("getValueStateSmartContract").innerHTML;
 
 //If Metamask is not detected the user will be told to install Metamask.
 function detectMetamaskInstalled(){
@@ -176,8 +176,8 @@ changeResolverInContractEvent.addEventListener('click', () => {
     .then((txHash) => console.log(txHash))
     .catch((error) => console.error);
 });
-
-//Get the latest event. Once the event is triggered, website will update value.
+23
+//Get the latest event. Once the event i  s triggered, website will update value.
 // contractDefined_JS.events.faucetWithdraw({
 //      fromBlock: 'latest'
 //  }, function(error, eventResult){})

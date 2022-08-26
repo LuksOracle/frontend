@@ -35,7 +35,6 @@ Run locally for testing with:
        npm install http-server
        http-server
 
-## :camera: Slide presentation: 
+## :camera: Slide presentation:
 
 https://docs.google.com/presentation/d/1s1yyrKdPA75_q2RZRx3A8FxvknriruWgnGQb9-7QVNE/edit?usp=sharing
-

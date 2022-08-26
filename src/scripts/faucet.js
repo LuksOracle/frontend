@@ -3,7 +3,7 @@
 
 //Empty array to be filled once Metamask is called.
 let accounts = [];
-document.getElementById("enableEthereumButton").innerHTML =  "Connect Metamask"
+document.getElementById("enableEthereumButton").innerHTML;
 document.getElementById("getValueStateSmartContract").innerHTML =  "Please connect wallet first to check withdrawal time."
 
 //If Metamask is not detected the user will be told to install Metamask.
@@ -34,6 +34,9 @@ function enableMetamaskOnLuksoL16() {
   }
 }
 
+function checkLINKBalance() {
+  
+}
 
 //Get the latest value.
 function checkLastDateWithdrawn() {
@@ -85,7 +88,8 @@ const chainlinkInterfaceERC20_CONTRACT = new web3.eth.Contract(chainlinkInterfac
 
 //LINK BALANCE
 chainlinkInterfaceERC20_CONTRACT.methods.balanceOf(contractAddress_JS).call((err, contractLINKbalanceResult) => {
-  document.getElementById("getFaucetLinkBalance").innerHTML = contractLINKbalanceResult/(10**18) + " LINK"
+  if ((contractLINKbalanceResult/(10**18)) == 0){document.getElementById("getFaucetLinkBalance").innerHTML = "The faucet is empty!"}
+  else {document.getElementById("getFaucetLinkBalance").innerHTML = contractLINKbalanceResult/(10**18) + " LINK"}
 });
 
 
@@ -124,7 +128,8 @@ contractDefined_JS.events.faucetWithdraw({
   checkLastDateWithdrawn()
   //LINK BALANCE
   chainlinkInterfaceERC20_CONTRACT.methods.balanceOf(contractAddress_JS).call((err, contractLINKbalanceResult) => {
-    document.getElementById("getFaucetLinkBalance").innerHTML = contractLINKbalanceResult/(10**18) + " LINK"
+    if ((contractLINKbalanceResult/(10**18)) == 0){document.getElementById("getFaucetLinkBalance").innerHTML = "The faucet is empty!"}
+    else {document.getElementById("getFaucetLinkBalance").innerHTML = contractLINKbalanceResult/(10**18) + " LINK"}
   });
    })
  .on('changed', function(eventResult){
