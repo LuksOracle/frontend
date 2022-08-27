@@ -56,14 +56,14 @@ function checkVerifiedTwitter() {
   contractDefined_JS.methods.addressTwitterID(accounts[0]).call((err, balance) => {
 
     if(balance === undefined){
-      document.getElementById("getValueStateSmartContract").innerHTML =  "Connect to L16 Testnet to read blockchain data."
+      document.getElementById("getValueStateSmartContract").value =  "Connect to L16 Testnet to read blockchain data."
     }
     else{
       if (balance != 0) {
-        document.getElementById("getValueStateSmartContract").innerHTML = "https://twitter.com/i/user/"+balance
+        document.getElementById("getValueStateSmartContract").value = balance
       }
       else {
-        document.getElementById("getValueStateSmartContract").innerHTML = "There is no Twitter associated to this account yet."
+        document.getElementById("getValueStateSmartContract").value = "There is no Twitter associated to this account yet."
       }
     }
   })}
