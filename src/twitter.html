@@ -53,10 +53,10 @@
                 L16 Authenticated TNS:
               </label>
               <input
-              class="shadow bg-gray-100 opacity-50 border text-gray-900 text-sm rounded focus:ring-blue-500 block w-full p-3 cursor-not-allowed dark:bg-gray-700  dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500"
+              class="shadow bg-gray-100 opacity-50 border text-gray-900 placeholder-gray-900 text-sm rounded focus:ring-blue-500 block w-full p-3 cursor-not-allowed dark:bg-gray-700  dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500"
               id="getValueStateSmartContract"
               type="text"
-              placeholder="You will see output here"
+              placeholder="Connect your Wallet to MetaMask to see output results"
               disabled
             />
               <input
@@ -69,19 +69,19 @@
 
             <div class="flex items-center justify-between pt-4">
               <button
-                class="readStateInTwitterIDAddressEvent py-2 px-3 text-xs sm:text-base font-medium sm:rounded-lg text-center bg-gradient-to-r leading-tight from-purple-800 to-pink-500 hover:from-pink-500 hover:to-green-500 text-white focus:ring focus:outline-none rounded transition hover:scale-105 transform duration-300 ease-in-out"
+                class="readStateInTwitterIDAddressEvent py-2 px-3 text-xs sm:text-base font-medium sm:rounded-lg text-center bg-gradient-to-r leading-tight from-purple-800 to-pink-500 hover:from-pink-500 hover:to-purple-800 text-white focus:ring focus:outline-none rounded transition hover:scale-105 transform duration-300 ease-in-out"
                 type="button">
                 Search
               </button>
               <button
-                class="changeStateInContractEvent py-2 px-3 text-xs sm:text-base font-medium sm:rounded-lg text-center bg-gradient-to-r leading-tight from-purple-800 to-pink-500 hover:from-pink-500 hover:to-green-500 text-white focus:ring focus:outline-none rounded transition hover:scale-105 transform duration-300 ease-in-out"
+                class="readStateInTwitterIDAddressEvent py-2 px-3 text-xs sm:text-base font-medium sm:rounded-lg text-center bg-gradient-to-r leading-tight from-purple-800 to-pink-500 hover:from-pink-500 hover:to-purple-800 text-white focus:ring focus:outline-none rounded transition hover:scale-105 transform duration-300 ease-in-out"
                 type="button">
                 Register
               </button>
               <button
-                class="changeResolverInContractEvent py-2 px-3 text-xs sm:text-base font-medium sm:rounded-lg text-center bg-gradient-to-r leading-tight from-purple-800 to-pink-500 hover:from-pink-500 hover:to-green-500 text-white focus:ring focus:outline-none rounded transition hover:scale-105 transform duration-300 ease-in-out"
+                class="readStateInTwitterIDAddressEvent py-2 px-3 text-xs sm:text-base font-medium sm:rounded-lg text-center bg-gradient-to-r leading-tight from-purple-800 to-pink-500 hover:from-pink-500 hover:to-purple-800 text-white focus:ring focus:outline-none rounded transition hover:scale-105 transform duration-300 ease-in-out"
                 type="button">
-                Update
+                Resolve
               </button>
             </div>
           </form>
@@ -106,14 +106,29 @@
 
         <!--Footer-->
         <div class="w-full pt-16 pb-6 leading-normal text-base md:text-2xl mb-8 text-center md:text-center">
-          <div class="pb-8 font-semibold opacity-80">
+          <div class="pb-2 font-semibold opacity-80">
             <span class="bg-clip-text self-center text-transparent bg-gradient-to-r from-blue-400 via-pink-500 to-purple-500">
             How does this work?
             </span>
           </div>
           <div class="text-white opacity-75 no-underline hover:no-underline text-lg">
-            Link your web3 identity by to your twitter ID, verify which wallets are twitter authenticated, and more.<br><br> To get started, retrieve <a class="underline hover:no-underline" href="https://tweeterid.com/"> your twitter ID here</a>, make a tweet <a class="underline hover:no-underline" href="https://twitter.com/intent/tweet?text=Linking%20my%20twitter%20account%20to%200x0000000000000000000000000000000000000000%20on%20the%20%23LUKSO%20%23L16%20testnet%20using%20%23LuksOracle"> in this format </a> from your @, then register your account above!
+            <!-- Link your web3 identity by to your twitter ID, verify which wallets are twitter authenticated, and more.<br><br>  -->
+              Twitter name Space is using ChainLink oracle request to verify your Twitter ID.
+
           </div>
+
+          <div class="pb-2 pt-5 font-semibold opacity-80">
+            <span class="bg-clip-text self-center text-transparent bg-gradient-to-r from-blue-400 via-pink-500 to-purple-500">
+            How to get started?
+            </span>
+          </div>
+          <div class="text-white opacity-75 no-underline hover:no-underline text-lg">
+              To get started, retrieve <a class="underline hover:no-underline" href="https://tweeterid.com/"> your twitter ID here</a>, make a tweet <a class="underline hover:no-underline" href="https://twitter.com/intent/tweet?text=Linking%20my%20twitter%20account%20to%200x0000000000000000000000000000000000000000%20on%20the%20%23LUKSO%20%23L16%20testnet%20using%20%23LuksOracle"> in this format </a> from your @, then register your account above!
+          </div>
+          <div class=" pt-5 text-white opacity-75 no-underline hover:no-underline text-lg">
+            <b>Search:</b> Enter a Twitter ID and get a linked wallet address. <br><b>Register:</b> Link your wallet to a Twitter ID.<br><b>Resolve:</b> Change which Twitter ID your address points at.
+        </div>
+
         </div>
       </div>
     </div>

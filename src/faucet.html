@@ -15,9 +15,9 @@
 	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700" rel="stylesheet">
 </head>
 
-<body class="leading-normal tracking-normal text-gray-900" style="font-family: 'Source Sans Pro', sans-serif;">
+<body class="leading-normal tracking-normal text-white" style="font-family: 'Source Sans Pro', sans-serif;">
 
-  <div class="h-screen pb-14 bg-right bg-cover" style="background-image:url('images/faucet-bottom.png');">
+  <div class="h-screen pb-14 bg-right-top bg-cover" style="background-image:url('images/header.png');">
 	<!--Nav-->
 	<div class="w-full container mx-auto p-6">
 		<div class="w-full flex items-center justify-between">
@@ -33,33 +33,30 @@
 	</div>
 
 <!--Main-->
-<div class="container pt-24 md:pt-48 px-6 mx-auto flex flex-wrap flex-col md:flex-row items-center">
-
-  <h1 class="mb-4 text-4xl font-extrabold tracking-tight leading-none text-indigo-600 md:text-5xl lg:text-6xl dark:text-white ">ChainLink Faucet</h1>
+<div class="container pt-24 md:pt-48 px-6 mx-auto flex flex-wrap flex-col md:flex-row items-center text-center content-center justify-items-center justify-center">
 
   <!--Left Col-->
-  <div class="w-full xl:w-3/5 py-6 overflow-y-hidden">
-  </div>
+  <div class="flex flex-col w-full xl:w-2/5 justify-center lg:items-start overflow-y-hidden">
+    <h1 class="my-4 text-3xl drop-shadow-2xl md:text-5xl text-white font-bold leading-tight slide-in-bottom-h1 self-center mb-10">ChainLink Faucet</h1>
 
-  <!--Right Col-->
-  <div class="w-full xl:w-3/5 py-6 overflow-y-hidden">
-    <p class="leading-normal drop-shadow-2xl backdrop-blur-2xl text-base md:text-2xl mb-5 text-center md:text-left slide-in-bottom-subtitle" >Last Withdrawal Time:</p>
+    <p class="leading-normal drop-shadow-2xl backdrop-blur-2xl text-base md:text-2xl mb-5 text-center md:text-left slide-in-bottom-subtitle self-center" >Last Withdrawal Time:</p>
   
-    <p class="text-violet-900 drop-shadow-2xl backdrop-blur-2xl font-bold pb-8 lg:pb-6 text-center md:text-left fade-in" id="getValueStateSmartContract"></p>
-    
-    <!-- <p class="leading-normal drop-shadow-2xl backdrop-blur-2xl text-base md:text-2xl mb-5 text-center md:text-left slide-in-bottom-subtitle" >Your Balance :</p>
-  
-    <p class="text-violet-900 drop-shadow-2xl backdrop-blur-2xl font-bold pb-8 lg:pb-6 text-center md:text-left fade-in" id="getLINKValueStateSmartContract"></p> -->
+    <p class="text-violet-900 drop-shadow-2xl backdrop-blur-2xl font-bold pb-8 lg:pb-6 text-center md:text-left fade-in self-center" id="getValueStateSmartContract"></p>
 
-    <p class="leading-normal drop-shadow-2xl backdrop-blur-2xl text-base md:text-2xl mb-5 text-center md:text-left slide-in-bottom-subtitle">Faucet LINK Balance: </p>
+    <p class="leading-normal drop-shadow-2xl backdrop-blur-2xl text-base md:text-2xl mb-5 text-center md:text-left slide-in-bottom-subtitle self-center">Faucet LINK Balance: </p>
   
-    <p class="text-violet-900 drop-shadow-2xl backdrop-blur-2xl font-bold pb-8 lg:pb-6 text-center md:text-left fade-in" id="getFaucetLinkBalance"></p>
-    <div class="flex w-full justify-center md:justify-start pb-24 lg:pb-0 fade-in">
+    <p class="text-violet-900 drop-shadow-2xl backdrop-blur-2xl font-bold pb-8 lg:pb-6 text-center md:text-left fade-in self-center" id="getFaucetLinkBalance"></p>
+    <div class="flex justify-center md:justify-start pb-24 lg:pb-0 fade-in self-center">
       <!-- <form action="faucet.html" method="get"> -->
         <button type="submit" class="changeStateInContractEvent py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 transition hover:scale-105 transform duration-300 ease-in-out">Request 20 LINK</button>
       <!-- </form> -->
     </div>
   </div>
+
+  <!--Right Col-->
+  <!-- <div class="w-full xl:w-3/5 py-6 overflow-y-hidden">
+
+  </div> -->
   
   <!-- web3.js -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/web3/1.5.0-rc.0/web3.min.js"></script>
