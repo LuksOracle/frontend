@@ -1,10 +1,5 @@
-//Metamask sending trasactions:
-//https://docs.metamask.io/guide/sending-transactions.html#transaction-parameters
 
-//Empty array to be filled once Metamask is called.
-let accounts = [];
-document.getElementById("enableEthereumButton").innerHTML;
-document.getElementById("getValueStateSmartContract").innerHTML =  "Please connect wallet first to check withdrawal time."
+// METAMASK
 
 //If Metamask is not detected the user will be told to install Metamask.
 function detectMetamaskInstalled(){
@@ -18,6 +13,7 @@ function detectMetamaskInstalled(){
 
 //Alert user to connect their Metamask address to the site before doing any transactions.
 function checkAddressMissingMetamask() {
+  console.log(accounts.length)
   if(accounts.length == 0) {
     alert("No address from Metamask found. Click the top button to connect your Metamask account then try again without refreshing the page.")
   }
@@ -32,10 +28,6 @@ function enableMetamaskOnLuksoL16() {
     alert("You are not on the LuksoL16 Testnet! Please switch to LuksoL16 and refresh page.")
     console.log(window.ethereum.networkVersion)
   }
-}
-
-function checkLINKBalance() {
-  
 }
 
 //Get the latest value.
@@ -56,6 +48,23 @@ function checkLastDateWithdrawn() {
     }
   })}
 
+// return the last time the person withdrew from our faucet
+async function getAccount() {
+  accounts = await ethereum.request({ method: 'eth_requestAccounts' });
+  document.getElementById("enableEthereumButton").innerText = accounts[0].substr(0,5) + "..." +  accounts[0].substr(38,4)
+  checkLastDateWithdrawn()
+}
+
+// ON LOAD
+
+//Metamask sending trasactions:
+//https://docs.metamask.io/guide/sending-transactions.html#transaction-parameters
+
+//Empty array to be filled once Metamask is called.
+let accounts = [];
+document.getElementById("enableEthereumButton").innerHTML;
+document.getElementById("getValueStateSmartContract").innerHTML =  "Please connect wallet first to check withdrawal time."
+
 //When the page is opened check for error handling issues.
 detectMetamaskInstalled()
 
@@ -66,14 +75,9 @@ ethereumButton.addEventListener('click', () => {
     enableMetamaskOnLuksoL16()
 });
 
-async function getAccount() {
-  accounts = await ethereum.request({ method: 'eth_requestAccounts' });
-  document.getElementById("enableEthereumButton").innerText = accounts[0].substr(0,5) + "..." +  accounts[0].substr(38,4)
-  checkLastDateWithdrawn()
-}
-
 //Make Metamask the client side Web3 provider. Needed for tracking live events.
 const web3 = new Web3(window.ethereum)
+
 //Now build the contract with Web3.
 const contractAddress_JS = '0xe33EE68Fc5477Ea95F4897b67d3E763b7F74FC52'
 const contractABI_JS = [{"anonymous":false,"inputs":[],"name":"faucetWithdraw","type":"event"},{"inputs":[],"name":"withdrawDirect","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"relayCaller","type":"address"}],"name":"withdrawRelay","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"relayAddress","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"","type":"address"}],"name":"userPreviousWithdrawTime","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"}]
@@ -84,7 +88,6 @@ const chainlinkInterfaceERC20_ADDRESS = '0xbFB26279a9D28CeC1F781808Da89eFbBfE2c4
 const chainlinkInterfaceERC20_ABI =
 [{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"owner","type":"address"},{"indexed":true,"internalType":"address","name":"spender","type":"address"},{"indexed":false,"internalType":"uint256","name":"value","type":"uint256"}],"name":"Approval","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"from","type":"address"},{"indexed":true,"internalType":"address","name":"to","type":"address"},{"indexed":false,"internalType":"uint256","name":"value","type":"uint256"}],"name":"Transfer","type":"event"},{"inputs":[{"internalType":"address","name":"spender","type":"address"},{"internalType":"uint256","name":"amount","type":"uint256"}],"name":"approve","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"to","type":"address"},{"internalType":"uint256","name":"amount","type":"uint256"}],"name":"transfer","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"from","type":"address"},{"internalType":"address","name":"to","type":"address"},{"internalType":"uint256","name":"amount","type":"uint256"}],"name":"transferFrom","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"owner","type":"address"},{"internalType":"address","name":"spender","type":"address"}],"name":"allowance","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"account","type":"address"}],"name":"balanceOf","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"totalSupply","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"}]
 const chainlinkInterfaceERC20_CONTRACT = new web3.eth.Contract(chainlinkInterfaceERC20_ABI, chainlinkInterfaceERC20_ADDRESS)
-
 
 //LINK BALANCE
 chainlinkInterfaceERC20_CONTRACT.methods.balanceOf(contractAddress_JS).call((err, contractLINKbalanceResult) => {
