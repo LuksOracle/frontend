@@ -36,16 +36,16 @@ function enableMetamaskOnLuksoL16() {
 function checkTwitterAddressOwner(twitter_ID) {
   //"readStateInTwitterIDAddress"
   contractDefined_JS.methods.twitterIDaddress(twitter_ID).call((err, balance_) => {
-
+  console.log("balance", balance_)
   if(balance_ === undefined){
-    document.getElementById("getValueStateSmartContract").innerHTML =  "Select LuksoL16 Testnet to read blockchain data."
+    document.getElementById("getValueStateSmartContract").value =  "Connect to L16 Testnet to read blockchain data."
   }
   else{
     if (balance_ != 0) {
-      document.getElementById("getValueStateSmartContract").innerHTML = balance_
+      document.getElementById("getValueStateSmartContract").value = balance_
     }
     else {
-      document.getElementById("getValueStateSmartContract").innerHTML = "No Twitter is associated to this account yet."
+      document.getElementById("getValueStateSmartContract").value = "No Twitter is associated to this account yet."
     }
   }
 })}
@@ -56,11 +56,11 @@ function checkVerifiedTwitter() {
   contractDefined_JS.methods.addressTwitterID(accounts[0]).call((err, balance) => {
 
     if(balance === undefined){
-      document.getElementById("getValueStateSmartContract").innerHTML =  "Install Metamask and select LuksoL16 Testnet to read blockchain data."
+      document.getElementById("getValueStateSmartContract").innerHTML =  "Connect to L16 Testnet to read blockchain data."
     }
     else{
       if (balance != 0) {
-        document.getElementById("getValueStateSmartContract").innerHTML = balance //"https://twitter.com/i/user/"+balance
+        document.getElementById("getValueStateSmartContract").innerHTML = "https://twitter.com/i/user/"+balance
       }
       else {
         document.getElementById("getValueStateSmartContract").innerHTML = "There is no Twitter associated to this account yet."
