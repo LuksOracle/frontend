@@ -112,7 +112,8 @@ const changeStateInContractEvent = document.querySelector('.changeStateInContrac
 
 changeStateInContractEvent.addEventListener('click', () => {
   checkAddressMissingMetamask()
-  var twitter_ID = Math.abs(document.getElementById("setValueSmartContract").value) //Math.abs(document.getElementById("setValueSmartContract").value);
+  var twitter_ID = document.getElementById("setValueSmartContract").value.toString();
+  //var twitter_ID = Math.abs(document.getElementById("setValueSmartContract").value) //Math.abs(document.getElementById("setValueSmartContract").value);
 
   //uint cannot be negative, force to absolute value.
 //  var inputContractText =  Math.abs(document.getElementById("setValueSmartContract").value);
@@ -139,7 +140,7 @@ changeStateInContractEvent.addEventListener('click', () => {
 const readStateInTwitterIDAddressEvent = document.querySelector('.readStateInTwitterIDAddressEvent');
 readStateInTwitterIDAddressEvent.addEventListener('click', () => {
   checkAddressMissingMetamask()
-  var twitter_ID = Math.abs(document.getElementById("setValueSmartContract").value);
+  var twitter_ID = document.getElementById("setValueSmartContract").value.toString();
   checkTwitterAddressOwner(twitter_ID);
   //uint cannot be negative, force to absolute value.
 //  var inputContractText =  Math.abs(document.getElementById("setValueSmartContract").value);
@@ -153,7 +154,8 @@ readStateInTwitterIDAddressEvent.addEventListener('click', () => {
 const changeResolverInContractEvent = document.querySelector('.changeResolverInContractEvent');
 changeResolverInContractEvent.addEventListener('click', () => {
   checkAddressMissingMetamask()
-  var twitter_ID = Math.abs(document.getElementById("setValueSmartContract").value);
+  var twitter_ID = document.getElementById("setValueSmartContract").value.toString();
+//  var twitter_ID = Math.abs(document.getElementById("setValueSmartContract").value);
 
   //uint cannot be negative, force to absolute value.
 //  var inputContractText =  Math.abs(document.getElementById("setValueSmartContract").value);
