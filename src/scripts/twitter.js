@@ -1,10 +1,7 @@
 //Metamask sending trasactions:
 //https://docs.metamask.io/guide/sending-transactions.html#transaction-parameters
 
-//Empty array to be filled once Metamask is called.
-let accounts = [];
-document.getElementById("enableEthereumButton").innerHTML =  "Connect Metamask"
-document.getElementById("getValueStateSmartContract").innerHTML =  "Please connect wallet first to check Twitter associated to your wallet."
+// METAMASK FUNCTIONS
 
 //If Metamask is not detected the user will be told to install Metamask.
 function detectMetamaskInstalled(){
@@ -34,47 +31,50 @@ function enableMetamaskOnLuksoL16() {
   }
 }
 
+// TWITTER FUNCTIONS
+
 function checkTwitterAddressOwner(twitter_ID) {
   //"readStateInTwitterIDAddress"
   contractDefined_JS.methods.twitterIDaddress(twitter_ID).call((err, balance_) => {
-
+  console.log("balance", balance_)
   if(balance_ === undefined){
-    document.getElementById("getValueStateSmartContractAddress").innerHTML =  "Install Metamask and select LuksoL16 Testnet to read blockchain data."
+    document.getElementById("getValueStateSmartContract").value =  "Connect to L16 Testnet to read blockchain data."
   }
   else{
     if (balance_ != 0) {
-      document.getElementById("getValueStateSmartContractAddress").innerHTML = balance_
+      document.getElementById("getValueStateSmartContract").value = balance_
     }
     else {
-      document.getElementById("getValueStateSmartContractAddress").innerHTML = "There is no Twitter associated to this account yet."
+      document.getElementById("getValueStateSmartContract").value = "No Twitter is associated to this account yet."
     }
   }
 })}
-
-
+  
 //Get the latest value.
 function checkVerifiedTwitter() {
 
   contractDefined_JS.methods.addressTwitterID(accounts[0]).call((err, balance) => {
 
     if(balance === undefined){
-      document.getElementById("getValueStateSmartContract").innerHTML =  "Install Metamask and select LuksoL16 Testnet to read blockchain data."
+      document.getElementById("getValueStateSmartContract").value =  "Connect to L16 Testnet to read blockchain data."
     }
     else{
       if (balance != 0) {
-        document.getElementById("getValueStateSmartContract").innerHTML = "https://twitter.com/i/user/"+balance
+        document.getElementById("getValueStateSmartContract").value = "https://twitter.com/i/user/" + balance
       }
       else {
-        document.getElementById("getValueStateSmartContract").innerHTML = "There is no Twitter associated to this account yet."
+        document.getElementById("getValueStateSmartContract").value = "There is no Twitter associated to this account yet."
       }
     }
   })}
 
-//When the page is opened check for error handling issues.
+//Empty array to be filled once Metamask is called. When the page is opened check for error handling issues.
+let accounts = [];
 detectMetamaskInstalled()
 
 //Connect to Metamask.
 const ethereumButton = document.querySelector('#enableEthereumButton');
+
 ethereumButton.addEventListener('click', () => {
     detectMetamaskInstalled()
     enableMetamaskOnLuksoL16()
@@ -88,11 +88,13 @@ async function getAccount() {
 
 //Make Metamask the client side Web3 provider. Needed for tracking live events.
 const web3 = new Web3(window.ethereum)
+
 //Now build the contract with Web3.
 const contractAddress_JS = '0xeBFC916C62B4dBcC29450D437136446fccfB658f'
+//'0x5f1E6f5981B52EA3563f03c69d579AC2F55e7c7F' //'0x5b1a5a842eB0ac44C0bC831a1233d0ac3b321eA3'
 const contractABI_JS = [{"anonymous":false,"inputs":[{"indexed":true,"internalType":"bytes32","name":"id","type":"bytes32"}],"name":"ChainlinkCancelled","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"bytes32","name":"id","type":"bytes32"}],"name":"ChainlinkFulfilled","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"bytes32","name":"id","type":"bytes32"}],"name":"ChainlinkRequested","type":"event"},{"anonymous":false,"inputs":[],"name":"tweetRequestEvent","type":"event"},{"inputs":[{"internalType":"bytes32","name":"_requestId","type":"bytes32"},{"internalType":"bytes32","name":"compressedAddressUint96","type":"bytes32"}],"name":"fulfillTweetAddressCompare","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint96","name":"twitter_id_Request","type":"uint96"}],"name":"requestTweetAddressCompare","outputs":[{"internalType":"bytes32","name":"requestId","type":"bytes32"}],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint96","name":"_twitter_id","type":"uint96"}],"name":"resolveToTwitterID","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"stateMutability":"nonpayable","type":"constructor"},{"inputs":[{"internalType":"address","name":"","type":"address"}],"name":"addressTwitterID","outputs":[{"internalType":"uint96","name":"","type":"uint96"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint96","name":"","type":"uint96"}],"name":"twitterIDaddress","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"}]
-      
-//[{"inputs":[{"internalType":"uint256","name":"mockRequestReturnValue","type":"uint256"}],"name":"mockRequestAnswer","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint96","name":"twitter_id_Request","type":"uint96"}],"name":"requestTweetAddressCompare","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"_addressFromTweetMatches","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"","type":"address"}],"name":"addressTwitterID","outputs":[{"internalType":"uint96","name":"","type":"uint96"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"tempRequestAddress","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"tempTwitter_id","outputs":[{"internalType":"uint96","name":"","type":"uint96"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint96","name":"","type":"uint96"}],"name":"twitterIDaddress","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"}]
+//[{"anonymous":false,"inputs":[{"indexed":true,"internalType":"bytes32","name":"id","type":"bytes32"}],"name":"ChainlinkCancelled","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"bytes32","name":"id","type":"bytes32"}],"name":"ChainlinkFulfilled","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"bytes32","name":"id","type":"bytes32"}],"name":"ChainlinkRequested","type":"event"},{"anonymous":false,"inputs":[],"name":"tweetRequestEvent","type":"event"},{"inputs":[{"internalType":"bytes32","name":"_requestId","type":"bytes32"},{"internalType":"bytes32","name":"compressedAddressUint96","type":"bytes32"}],"name":"fulfillTweetAddressCompare","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint96","name":"twitter_id_Request","type":"uint96"}],"name":"requestTweetAddressCompare","outputs":[{"internalType":"bytes32","name":"requestId","type":"bytes32"}],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint96","name":"_twitter_id","type":"uint96"}],"name":"resolveToTwitterID","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"stateMutability":"nonpayable","type":"constructor"},{"inputs":[{"internalType":"address","name":"","type":"address"}],"name":"addressTwitterID","outputs":[{"internalType":"uint96","name":"","type":"uint96"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint96","name":"","type":"uint96"}],"name":"twitterIDaddress","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"}]
+// [{"inputs":[],"stateMutability":"nonpayable","type":"constructor"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"bytes32","name":"id","type":"bytes32"}],"name":"ChainlinkCancelled","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"bytes32","name":"id","type":"bytes32"}],"name":"ChainlinkFulfilled","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"bytes32","name":"id","type":"bytes32"}],"name":"ChainlinkRequested","type":"event"},{"anonymous":false,"inputs":[],"name":"tweetRequestEvent","type":"event"},{"inputs":[{"internalType":"address","name":"","type":"address"}],"name":"addressTwitterID","outputs":[{"internalType":"uint96","name":"","type":"uint96"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"bytes32","name":"_requestId","type":"bytes32"},{"internalType":"uint256","name":"_addressFromTweetMatches","type":"uint256"}],"name":"fulfillTweetAddressCompare","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint96","name":"twitter_id_Request","type":"uint96"}],"name":"requestTweetAddressCompare","outputs":[{"internalType":"bytes32","name":"requestId","type":"bytes32"}],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint96","name":"_twitter_id","type":"uint96"}],"name":"resolveToTwitterID","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"tempRequestAddress","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"tempTwitter_id","outputs":[{"internalType":"uint96","name":"","type":"uint96"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint96","name":"","type":"uint96"}],"name":"twitterIDaddress","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"}]
 
 const contractDefined_JS = new web3.eth.Contract(contractABI_JS, contractAddress_JS)
 
@@ -102,17 +104,21 @@ const chainlinkInterfaceERC20_ABI =
 const chainlinkInterfaceERC20_CONTRACT = new web3.eth.Contract(chainlinkInterfaceERC20_ABI, chainlinkInterfaceERC20_ADDRESS)
 
 
-//LINK BALANCE
+//TWITTER LINK BALANCE
 chainlinkInterfaceERC20_CONTRACT.methods.balanceOf(contractAddress_JS).call((err, contractLINKbalanceResult) => {
-  document.getElementById("getFaucetLinkBalance").innerHTML = contractLINKbalanceResult/(10**18) + " LINK"
+  if (!contractLINKbalanceResult){detectMetamaskInstalled(); enableMetamaskOnLuksoL16()}
+  else if ((contractLINKbalanceResult/(10**18)) == 0){document.getElementById("getFaucetLinkBalanceEmpty").innerHTML = "The TNS contract is empty, please send LINK to 0xeBFC916C62B4dBcC29450D437136446fccfB658f"}
+  else {document.getElementById("getFaucetLinkBalance").innerHTML = "Twitter LINK Balance: " + contractLINKbalanceResult/(10**18) + " LINK"}
 });
 
 
 // MODIFY CONTRACT STATE WITH SET FUNCTION WITH PREDEFINED DATA FROM WEB3.JS
 const changeStateInContractEvent = document.querySelector('.changeStateInContractEvent');
+
 changeStateInContractEvent.addEventListener('click', () => {
   checkAddressMissingMetamask()
   var twitter_ID = document.getElementById("setValueSmartContract").value.toString();
+  //var twitter_ID = Math.abs(document.getElementById("setValueSmartContract").value) //Math.abs(document.getElementById("setValueSmartContract").value);
 
   //uint cannot be negative, force to absolute value.
 //  var inputContractText =  Math.abs(document.getElementById("setValueSmartContract").value);
@@ -154,6 +160,7 @@ const changeResolverInContractEvent = document.querySelector('.changeResolverInC
 changeResolverInContractEvent.addEventListener('click', () => {
   checkAddressMissingMetamask()
   var twitter_ID = document.getElementById("setValueSmartContract").value.toString();
+//  var twitter_ID = Math.abs(document.getElementById("setValueSmartContract").value);
 
   //uint cannot be negative, force to absolute value.
 //  var inputContractText =  Math.abs(document.getElementById("setValueSmartContract").value);
@@ -177,20 +184,20 @@ changeResolverInContractEvent.addEventListener('click', () => {
     .catch((error) => console.error);
 });
 
-// Get the latest event. Once the event is triggered, website will update value.
-contractDefined_JS.events.tweetRequestEvent({
-     fromBlock: 'latest'
- }, function(error, eventResult){})
- .on('data', function(eventResult){
-   console.log(eventResult)
-   //Call the get function to get the most accurate present state for the value.
-  checkVerifiedTwitter()
-  //LINK BALANCE
-  chainlinkInterfaceERC20_CONTRACT.methods.balanceOf(contractAddress_JS).call((err, contractLINKbalanceResult) => {
-    document.getElementById("getFaucetLinkBalance").innerHTML = contractLINKbalanceResult/(10**18) + " LINK"
-  });
-   })
- .on('changed', function(eventResult){
-     // remove event from local database
- })
- .on('error', console.error);
+//Get the latest event. Once the event i  s triggered, website will update value.
+// contractDefined_JS.events.faucetWithdraw({
+//      fromBlock: 'latest'
+//  }, function(error, eventResult){})
+//  .on('data', function(eventResult){
+//    console.log(eventResult)
+//    //Call the get function to get the most accurate present state for the value.
+//   checkVerifiedTwitter()
+//   //LINK BALANCE
+//   chainlinkInterfaceERC20_CONTRACT.methods.balanceOf(contractAddress_JS).call((err, contractLINKbalanceResult) => {
+//     document.getElementById("getFaucetLinkBalance").innerHTML = contractLINKbalanceResult/(10**18) + " LINK"
+//   });
+//    })
+//  .on('changed', function(eventResult){
+//      // remove event from local database
+//  })
+//  .on('error', console.error);

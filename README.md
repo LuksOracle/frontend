@@ -42,4 +42,3 @@ Run locally for testing with:
 ## :camera: Slide presentation: 
 
 https://docs.google.com/presentation/d/1s1yyrKdPA75_q2RZRx3A8FxvknriruWgnGQb9-7QVNE/edit?usp=sharing
-

@@ -1,46 +1,77 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
-  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-  <title>LuksOracle</title>
-  <!-- Bootstrap -->
-  <!-- Latest compiled and minified CSS -->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  <link rel="shortcut icon" type="png" href="Images/favicon.png">
-  <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
-  <meta content="utf-8" http-equiv="encoding">
-  <!-- Helps objects scale to mobile devices -->
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  </head>
-<body style="background-color:magenta;">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>LuksOracle</title>
+	<meta name="description" content="">
+	<meta name="keywords" content="">
+	<link rel="shortcut icon" type="png" href="/src/images/logo-2.png">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
+  	<link rel="stylesheet" href="https://unpkg.com/tailwindcss@2.2.19/dist/tailwind.min.css"/>
+	<!--Replace with your tailwind.css once created-->
+	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700" rel="stylesheet">
+</head>
 
-<div class="container">
-<div style="height:115%">
-  <div class="col text-center">
-    <img class="img-fluid" alt="Responsive image" src="Images/luksoracleLogo.png"/><!--Set width to 40% of the screen width-->
-</div>
-</div>
+<body class="leading-normal tracking-normal text-gray-900" style="font-family: 'Source Sans Pro', sans-serif;">
+
+<div class="h-screen pb-14 bg-cover " style="background-image:url('/src/images/header.png');">
+	<!--Nav-->
+	<div class="w-full container mx-auto p-6">
+		<div class="w-full flex items-center justify-between">
+			<a class="flex items-center hover:text-indigo-300 text-indigo-400 no-underline hover:no-underline font-bold text-2xl lg:text-4xl" href="/index.html"> 
+				<img src="/src/images/logo.png" class="h-8 pr-2" viewBox="0 0 20 20"></img> LuksOracle
+			</a>
+			<div class="flex w-1/2 justify-end content-center">		
+				<a class="inline-block text-blue-100 no-underline hover:text-indigo-300 hover:text-underline text-center h-10 p-2 md:h-auto md:p-4" href="https://twitter.com/luksOracle">
+					<i class="fa-brands fa-twitter fa-2x"></i>
+				</a>
+				<a class="inline-block text-blue-100 no-underline hover:text-indigo-300 hover:text-underline text-center h-10 p-2 md:h-auto md:p-4" href="https://github.com/LuksOracle/frontend">
+					<i class="fa-brands fa-github fa-2x"></i>
+				</a>
+			</div>
+		</div>
+	</div>
+
+	<!--Main-->
+	<div class="container pt-24 md:pt-48 px-6 mx-auto flex flex-wrap flex-col md:flex-row items-center text-center content-center justify-items-center justify-center">
+		
+		<!--Left Col-->
+		<div class="flex flex-col w-full xl:w-2/5 justify-center lg:items-start overflow-y-hidden">
+			<h1 class="my-4 text-3xl drop-shadow-2xl md:text-5xl text-white font-bold leading-tight slide-in-bottom-h1 self-center">Lukso Oracle</h1>
+			<p class="leading-normal drop-shadow-2xl backdrop-blur-2xl text-white text-base md:text-2xl mb-8 self-center text-center slide-in-bottom-subtitle">Bringing Twitter to Lukso with ChainLink <br> Oracle Services</p>
+			<div class="flex justify-center md:justify-start pb-24 lg:pb-0 fade-in self-center">
+				<form action="/src/twitter.html" method="get">
+				<button type="submit" class="rounded-lg bg-gradient-to-r leading-tight from-purple-800 to-pink-500 hover:from-pink-500 hover:to-purple-800 text-white focus:ring focus:outline-none transition hover:scale-105 transform duration-300 ease-in-out px-5 py-2.5 text-center mr-2 mb-2">Connect your Twitter</button>
+				</form>
+
+				<form action="/src/faucet.html" method="get">
+						<button type="submit" class="transition hover:scale-105 transform duration-300 ease-in-out py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Get LINK</button>
+						<!-- <button type="submit" class="transition hover:scale-105 transform duration-300 ease-in-out py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-blue-600 focus:outline-none bg-white rounded-lg border-blue-600 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Get LINK</button> -->
+				</form>
+			</div>
+		</div>
+		
+		<!--Right Col-->
+		<!-- <div class="w-full xl:w-3/5 py-6 overflow-y-hidden">
+			<img class="w-5/6 mx-auto lg:mr-0 slide-in-bottom" src="/images/luksooracle.png">
+		</div> -->
+		
+		<!-- Footer-->
+		<!-- <div class="w-full pt-16 pb-6 text-sm text-center md:text-left fade-in">
+			<a class="text-gray-500 no-underline hover:no-underline" href="#">&copy; Faucet 2021</a>
+		</div> -->
+		
+	</div>
+	
 </div>
 
-<div class="container">
-    <div class="col text-center">
-      <form action="FrontEnd/faucetPage.html">
-        <input type="submit" class="btn btn-primary" value="Click to enter Faucet Page." />
-    </form>
-  </div>
-</div>
+  <!-- jQuery if you need it
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  -->
 
-<div class="container">
-  <div class="col text-center">
-    <form action="FrontEnd/twitterPage.html">
-      <input type="submit" class="btn btn-primary" value="Click to enter Twitter Page." />
-  </form>
-</div>
-</div>
-
-  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-  <!-- Include all compiled plugins (below), or include individual files as needed -->
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    <!-- <script src="app.js"></script> -->
 </body>
+
 </html>
