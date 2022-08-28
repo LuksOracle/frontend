@@ -49,19 +49,19 @@
 
           <form class="bg-gray-900 opacity-75 w-2/4 shadow-lg rounded-lg px-8 pt-6 pb-8 mb-4 self-center">
             <div class="mb-4">
-              <label class="block text-blue-300 py-2 font-bold mb-2 text-left" for="emailaddress">
-                L16 Authenticated TNS:
+              <label class="block text-blue-300 py-2 font-bold mb-2 text-center">
+                <span class="self-center font-semibold" id="getFaucetLinkBalance"></span>
+                <span class="self-center font-semibold text-red-500" id="getFaucetLinkBalanceEmpty"></span>
               </label>
               <input
-              class="shadow bg-gray-100 opacity-50 border text-gray-900 placeholder-gray-900 text-sm rounded focus:ring-blue-500 block w-full p-3 cursor-not-allowed dark:bg-gray-700  dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500"
+              class="shadow bg-gray-100 opacity-50 border text-gray-900 placeholder-gray-900 text-sm rounded-lg focus:ring-blue-500 block w-full p-3 cursor-not-allowed dark:bg-gray-700  dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 placeholder:"
               id="getValueStateSmartContract"
               type="text"
-              placeholder="Connect your Wallet to MetaMask to see output"
+              placeholder="Connect your MetaMask Wallet to see output"
               disabled
             />
               <input
-                class="shadow mt-3 appearance-none border rounded w-full p-3 text-gray-700 leading-tight focus:ring transform transition hover:scale-105 duration-300 ease-in-out"
-                id="setValueSmartContract"
+                class="shadow mt-3 bg-gray-100 border text-gray-900 placeholder-gray-500 text-sm rounded-lg focus:ring-blue-500 block w-full p-3 dark:bg-gray-700  dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500"
                 type="number"
                 placeholder="Enter Your Twitter ID"
               />
@@ -69,7 +69,7 @@
 
             <div class="flex items-center justify-between pt-4">
               <button
-                class = "readStateInTwitterIDAddressEvent py-2 px-3 text-xs sm:text-base font-medium sm:rounded-lg text-center bg-gradient-to-r leading-tight from-purple-800 to-pink-500 hover:from-pink-500 hover:to-purple-800 text-white focus:ring focus:outline-none rounded transition hover:scale-105 transform duration-300 ease-in-out"
+                class = "changeStateInContractEvent py-2 px-3 text-xs sm:text-base font-medium sm:rounded-lg text-center bg-gradient-to-r leading-tight from-purple-800 to-pink-500 hover:from-pink-500 hover:to-purple-800 text-white focus:ring focus:outline-none rounded transition hover:scale-105 transform duration-300 ease-in-out"
                 type="button">
                 Search
               </button>
