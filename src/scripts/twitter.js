@@ -106,7 +106,8 @@ const chainlinkInterfaceERC20_CONTRACT = new web3.eth.Contract(chainlinkInterfac
 
 //TWITTER LINK BALANCE
 chainlinkInterfaceERC20_CONTRACT.methods.balanceOf(contractAddress_JS).call((err, contractLINKbalanceResult) => {
-  if ((contractLINKbalanceResult/(10**18)) == 0){document.getElementById("getFaucetLinkBalanceEmpty").innerHTML = "The TNS contract is empty, please send LINK to 0xeBFC916C62B4dBcC29450D437136446fccfB658f"}
+  if (!contractLINKbalanceResult){detectMetamaskInstalled(); enableMetamaskOnLuksoL16()}
+  else if ((contractLINKbalanceResult/(10**18)) == 0){document.getElementById("getFaucetLinkBalanceEmpty").innerHTML = "The TNS contract is empty, please send LINK to 0xeBFC916C62B4dBcC29450D437136446fccfB658f"}
   else {document.getElementById("getFaucetLinkBalance").innerHTML = "Twitter LINK Balance: " + contractLINKbalanceResult/(10**18) + " LINK"}
 });
 
