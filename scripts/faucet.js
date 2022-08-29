@@ -39,12 +39,14 @@ function checkLastDateWithdrawn() {
     }
 
     else{
-      if (balance != 0) {
-        balance = new Date(balance * 1000).toLocaleString()
-        document.getElementById("getValueStateSmartContract").innerHTML =  balance
+      console.log(BigInt(Date.now()) )
+      console.log(BigInt((BigInt(balance)+43200n)*1000n)  )
+      if ( BigInt(Date.now()) > BigInt((BigInt(balance)+43200n)*1000n) ) {
+        document.getElementById("getValueStateSmartContract").innerHTML = "You can withdraw from the faucet now."
       }
       else {
-        document.getElementById("getValueStateSmartContract").innerHTML = "You have not yet withdrawn from the Lukso L16 LINK faucet."
+        balance = new Date(balance*1000).toLocaleString()
+        document.getElementById("getValueStateSmartContract").innerHTML =  balance
       }
     }
   })
