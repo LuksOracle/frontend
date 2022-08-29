@@ -117,47 +117,46 @@ chainlinkInterfaceERC20_CONTRACT.methods.balanceOf(contractAddress_JS).call((err
 const changeStateInContractEvent = document.querySelector('.changeStateInContractEvent');
 
 changeStateInContractEvent.addEventListener('click', () => {
-  checkAddressMissingMetamask()
-  var twitter_ID = document.getElementById("setValueSmartContract").value.toString();
-  //var twitter_ID = Math.abs(document.getElementById("setValueSmartContract").value) //Math.abs(document.getElementById("setValueSmartContract").value);
 
-  //uint cannot be negative, force to absolute value.
-//  var inputContractText =  Math.abs(document.getElementById("setValueSmartContract").value);
-//  Check if value is an integer. If not throw an error.
-//  if(Number.isInteger(inputContractText) == false){
-//    alert("Input value is not an integer! Only put an integer for input.")
-//  }
-  ethereum
-    .request({
-      method: 'eth_sendTransaction',
-      params: [
-        {
-          from: accounts[0],
-          to: contractAddress_JS,
-          data: contractDefined_JS.methods.requestTweetAddressCompare(twitter_ID).encodeABI()
-        },
-      ],
-    })
-    .then((txHash) => console.log(txHash))
-    .catch((error) => console.error);
+  checkAddressMissingMetamask()
+
+  var twitter_ID = document.getElementById("setValueSmartContract").value.toString();
+
+  chainlinkInterfaceERC20_CONTRACT.methods.balanceOf(contractAddress_JS).call((err, contractLINKbalanceResult) => {
+    if(contractLINKbalanceResult >= "1000000000000000000"){
+      ethereum
+        .request({
+          method: 'eth_sendTransaction',
+          params: [
+            {
+              from: accounts[0],
+              to: contractAddress_JS,
+              data: contractDefined_JS.methods.requestTweetAddressCompare(twitter_ID).encodeABI()
+            },
+          ],
+        })
+        .then((txHash) => console.log(txHash))
+        .catch((error) => console.error);
+    }else{
+      alert("Twitter Name Space contract needs 1 or more LINK to do a request! Send LINK to Twitter Name Space address on L16 here: " + contractAddress_JS)
+    }
+  });
+
 });
 
 // MODIFY CONTRACT STATE WITH SET FUNCTION WITH PREDEFINED DATA FROM WEB3.JS
 const readStateInTwitterIDAddressEvent = document.querySelector('.readStateInTwitterIDAddressEvent');
+
 readStateInTwitterIDAddressEvent.addEventListener('click', () => {
   checkAddressMissingMetamask()
   var twitter_ID = document.getElementById("setValueSmartContract").value.toString();
   checkTwitterAddressOwner(twitter_ID);
-  //uint cannot be negative, force to absolute value.
-//  var inputContractText =  Math.abs(document.getElementById("setValueSmartContract").value);
-//  Check if value is an integer. If not throw an error.
-//  if(Number.isInteger(inputContractText) == false){
-//    alert("Input value is not an integer! Only put an integer for input.")
-//  }
+
 });
 
 // MODIFY CONTRACT STATE WITH SET FUNCTION WITH PREDEFINED DATA FROM WEB3.JS
 const changeResolverInContractEvent = document.querySelector('.changeResolverInContractEvent');
+
 changeResolverInContractEvent.addEventListener('click', () => {
   checkAddressMissingMetamask()
   var twitter_ID = document.getElementById("setValueSmartContract").value.toString();
@@ -179,7 +178,7 @@ changeResolverInContractEvent.addEventListener('click', () => {
         .catch((error) => console.error);
     }
     else{
-      alert("You do not have the twitter_id pointing at your Metamask wallet address yet! Register first!")
+      alert("You do not have the twitter_id pointing at your Metamask wallet address yet! Register yout twitter_id first!")
     }
   })
 

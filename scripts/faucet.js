@@ -104,36 +104,35 @@ chainlinkInterfaceERC20_CONTRACT.methods.balanceOf(contractAddress_JS).call((err
 // MODIFY CONTRACT STATE WITH SET FUNCTION WITH PREDEFINED DATA FROM WEB3.JS
 const changeStateInContractEvent = document.querySelector('.changeStateInContractEvent');
 changeStateInContractEvent.addEventListener('click', () => {
+
   checkAddressMissingMetamask()
 
-contractDefined_JS.methods.userPreviousWithdrawTime(accounts[0]).call((err, balance) => {
-  if( parseInt(Date.now()-(43200*1000)) > ((balance)*1000) ) {
-    chainlinkInterfaceERC20_CONTRACT.methods.balanceOf(contractAddress_JS).call((err, contractLINKbalanceResult) => {
-      if(contractLINKbalanceResult > "20000000000000000000"){
-        ethereum
-          .request({
-            method: 'eth_sendTransaction',
-            params: [
-              {
-                from: accounts[0],
-                to: contractAddress_JS,
-                data: contractDefined_JS.methods.withdrawDirect().encodeABI()
-              },
-            ],
-          })
-          .then((txHash) => console.log(txHash))
-          .catch((error) => console.error);
-      }else{
-        alert("NEED AT LEAST 20 LINK IN THE FAUCET!")
-      }
-    });
-  }else{
-    alert("NEED TO WAIT THE FULL 12 HOURS AFTER YOUR LAST FAUCET WITHDRAW!")
-  }
+  contractDefined_JS.methods.userPreviousWithdrawTime(accounts[0]).call((err, balance) => {
+    if( parseInt(Date.now()-(43200*1000)) > ((balance)*1000) ) {
+      chainlinkInterfaceERC20_CONTRACT.methods.balanceOf(contractAddress_JS).call((err, contractLINKbalanceResult) => {
+        if(contractLINKbalanceResult >= "920000000000000000000"){
+          ethereum
+            .request({
+              method: 'eth_sendTransaction',
+              params: [
+                {
+                  from: accounts[0],
+                  to: contractAddress_JS,
+                  data: contractDefined_JS.methods.withdrawDirect().encodeABI()
+                },
+              ],
+            })
+            .then((txHash) => console.log(txHash))
+            .catch((error) => console.error);
+        }else{
+          alert("NEED AT LEAST 20 LINK IN THE FAUCET! DONATE TO FAUCET ADDRESS ON L16: " + contractAddress_JS)
+        }
+      });
+    }else{
+      alert("NEED TO WAIT THE FULL 12 HOURS AFTER YOUR LAST FAUCET WITHDRAW!")
+    }
 
-})
-
-
+  })
 
 });
 
