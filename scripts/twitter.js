@@ -34,21 +34,22 @@ function enableMetamaskOnLuksoL16() {
 // TWITTER FUNCTIONS
 
 function checkTwitterAddressOwner(twitter_ID) {
-  //"readStateInTwitterIDAddress"
+    //"readStateInTwitterIDAddress"
   contractDefined_JS.methods.twitterIDaddress(twitter_ID).call((err, balance_) => {
-  console.log("balance", balance_)
-  if(balance_ === undefined){
-    document.getElementById("getValueStateSmartContract").value =  "Connect to L16 Testnet to read blockchain data."
-  }
-  else{
-    if (balance_ != 0) {
-      document.getElementById("getValueStateSmartContract").value = balance_
+    console.log("balance", balance_)
+    if(balance_ === undefined){
+      document.getElementById("getValueStateSmartContract").value =  "Connect to L16 Testnet to read blockchain data."
     }
-    else {
-      document.getElementById("getValueStateSmartContract").value = "No Twitter is associated to this account yet."
+    else{
+      if (balance_ != 0) {
+        document.getElementById("getValueStateSmartContract").value = balance_
+      }
+      else {
+        document.getElementById("getValueStateSmartContract").value = "No Twitter is associated to this account yet."
+      }
     }
-  }
-})}
+  })
+}
 
 //Get the latest value.
 function checkVerifiedTwitter() {
@@ -160,28 +161,29 @@ const changeResolverInContractEvent = document.querySelector('.changeResolverInC
 changeResolverInContractEvent.addEventListener('click', () => {
   checkAddressMissingMetamask()
   var twitter_ID = document.getElementById("setValueSmartContract").value.toString();
-//  var twitter_ID = Math.abs(document.getElementById("setValueSmartContract").value);
 
-  //uint cannot be negative, force to absolute value.
-//  var inputContractText =  Math.abs(document.getElementById("setValueSmartContract").value);
-//  Check if value is an integer. If not throw an error.
-//  if(Number.isInteger(inputContractText) == false){
-//    alert("Input value is not an integer! Only put an integer for input.")
-//  }
+  contractDefined_JS.methods.twitterIDaddress(twitter_ID).call((err, balance_) => {
+    if(accounts[0] == balance_.toLowerCase()) {
+      ethereum
+        .request({
+          method: 'eth_sendTransaction',
+          params: [
+            {
+              from: accounts[0],
+              to: contractAddress_JS,
+              data: contractDefined_JS.methods.resolveToTwitterID(twitter_ID).encodeABI()
+            },
+          ],
+        })
+        .then((txHash) => console.log(txHash))
+        .catch((error) => console.error);
+    }
+    else{
+      alert("You do not have twitter_id pointing at your Metamask wallet address yet! Register first!")
+    }
+  })
 
-  ethereum
-    .request({
-      method: 'eth_sendTransaction',
-      params: [
-        {
-          from: accounts[0],
-          to: contractAddress_JS,
-          data: contractDefined_JS.methods.resolveToTwitterID(twitter_ID).encodeABI()
-        },
-      ],
-    })
-    .then((txHash) => console.log(txHash))
-    .catch((error) => console.error);
+
 });
 
 //Get the latest event. Once the event i  s triggered, website will update value.
