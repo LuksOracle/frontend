@@ -15,17 +15,29 @@ Prove your Twitter and wallet connection using a Chainlink oracle request.
 Proof contract works when Chainlink node runs with verified Twitter IDs:
 EOA Wallets:
 
-1438606749389541377 (https://twitter.com/i/user/1438606749389541377) (https://github.com/MarcusWentz)
+EOA Wallets:
 
-1018093644 (https://twitter.com/i/user/1018093644) (https://github.com/m-r-g-t)
+1438606749389541377 
+(https://twitter.com/i/user/1438606749389541377) 
+(https://github.com/MarcusWentz)
 
-903308459147448324 (https://twitter.com/0xfinesto) (https://github.com/thomas779)
+1018093644 
+(https://twitter.com/i/user/1018093644) 
+(https://github.com/m-r-g-t)
 
-53525037 (https://twitter.com/gabibibah) (https://github.com/gabiburkoth)
+903308459147448324 
+(https://twitter.com/i/user/903308459147448324) 
+(https://github.com/thomas779)
+
+53525037 
+(https://twitter.com/i/user/53525037) 
+(https://github.com/gabiburkoth)
 
 Universal Profile:
 
-1563659416347430912 (https://twitter.com/luksOracle) (https://github.com/LuksOracle)
+1563659416347430912 
+(https://twitter.com/i/user/1563659416347430912) 
+(https://github.com/LuksOracle)
 
 If you hold multiple Twitter accounts to one wallet, you can change which Twitter account your wallet directly resolves too as well.
 
