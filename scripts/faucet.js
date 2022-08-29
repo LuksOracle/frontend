@@ -110,7 +110,7 @@ changeStateInContractEvent.addEventListener('click', () => {
   contractDefined_JS.methods.userPreviousWithdrawTime(accounts[0]).call((err, balance) => {
     if( parseInt(Date.now()-(43200*1000)) > ((balance)*1000) ) {
       chainlinkInterfaceERC20_CONTRACT.methods.balanceOf(contractAddress_JS).call((err, contractLINKbalanceResult) => {
-        if(contractLINKbalanceResult >= "920000000000000000000"){
+        if(contractLINKbalanceResult >= "20000000000000000000"){
           ethereum
             .request({
               method: 'eth_sendTransaction',
