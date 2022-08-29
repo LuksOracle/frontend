@@ -33,6 +33,10 @@ EOA Wallets:
 (https://twitter.com/i/user/53525037)
 (https://github.com/gabiburkoth)
 
+1356254205258952706
+(https://twitter.com/i/user/1356254205258952706)
+(https://github.com/johannafransn)
+
 Universal Profile:
 
 1563659416347430912
