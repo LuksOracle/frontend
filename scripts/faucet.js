@@ -108,7 +108,7 @@ changeStateInContractEvent.addEventListener('click', () => {
   checkAddressMissingMetamask()
 
   contractDefined_JS.methods.userPreviousWithdrawTime(accounts[0]).call((err, balance) => {
-    if( parseInt(Date.now()-(43200*1000)) > ((balance)*1000) ) {
+    if( BigInt(Date.now()) > ((BigInt(balance)+43200n)*1000n) ) {
       chainlinkInterfaceERC20_CONTRACT.methods.balanceOf(contractAddress_JS).call((err, contractLINKbalanceResult) => {
         if(contractLINKbalanceResult >= "20000000000000000000"){
           ethereum
