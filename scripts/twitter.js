@@ -179,7 +179,7 @@ changeResolverInContractEvent.addEventListener('click', () => {
         .catch((error) => console.error);
     }
     else{
-      alert("You do not have twitter_id pointing at your Metamask wallet address yet! Register first!")
+      alert("You do not have the twitter_id pointing at your Metamask wallet address yet! Register first!")
     }
   })
 
