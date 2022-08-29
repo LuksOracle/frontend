@@ -49,7 +49,7 @@ function checkTwitterAddressOwner(twitter_ID) {
     }
   }
 })}
-  
+
 //Get the latest value.
 function checkVerifiedTwitter() {
 

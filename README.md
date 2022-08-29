@@ -17,26 +17,26 @@ EOA Wallets:
 
 EOA Wallets:
 
-1438606749389541377 
-(https://twitter.com/i/user/1438606749389541377) 
+1438606749389541377
+(https://twitter.com/i/user/1438606749389541377)
 (https://github.com/MarcusWentz)
 
-1018093644 
-(https://twitter.com/i/user/1018093644) 
+1018093644
+(https://twitter.com/i/user/1018093644)
 (https://github.com/m-r-g-t)
 
-903308459147448324 
-(https://twitter.com/i/user/903308459147448324) 
+903308459147448324
+(https://twitter.com/i/user/903308459147448324)
 (https://github.com/thomas779)
 
-53525037 
-(https://twitter.com/i/user/53525037) 
+53525037
+(https://twitter.com/i/user/53525037)
 (https://github.com/gabiburkoth)
 
 Universal Profile:
 
-1563659416347430912 
-(https://twitter.com/i/user/1563659416347430912) 
+1563659416347430912
+(https://twitter.com/i/user/1563659416347430912)
 (https://github.com/LuksOracle)
 
 If you hold multiple Twitter accounts to one wallet, you can change which Twitter account your wallet directly resolves too as well.
@@ -47,7 +47,7 @@ If you hold multiple Twitter accounts to one wallet, you can change which Twitte
 
 :warning: We can verify Universal Profiles for Twitter IDs, but we don't have this shown in the frontend. See the scripts in the contracts repo for more info. :warning:
 
-## Website Link 
+## Website Link
 
 Github pages site hosting: https://luksoracle.github.io/frontend/
 
@@ -58,8 +58,11 @@ Template being modified, work in progress.
 Run locally for testing with:
 
        npm install http-server
-       http-server
 
-## :camera: Slide presentation: 
+       http-server
+       OR
+       npx http-server
+       
+## :camera: Slide presentation:
 
 https://docs.google.com/presentation/d/1s1yyrKdPA75_q2RZRx3A8FxvknriruWgnGQb9-7QVNE/edit?usp=sharing

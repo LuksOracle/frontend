@@ -18,7 +18,7 @@ function checkAddressMissingMetamask() {
   }
 }
 
-// Function called for getting Metamask accounts on LuksoL16. 
+// Function called for getting Metamask accounts on LuksoL16.
 // Used in every button in case the user forgets to click the top button.
 function enableMetamaskOnLuksoL16() {
   // Get account details from Metamask wallet.
@@ -37,7 +37,7 @@ function checkLastDateWithdrawn() {
     if(balance === undefined){
       document.getElementById("getValueStateSmartContract").innerHTML =  "Install Metamask and select LuksoL16 Testnet to have a Web3 provider to read blockchain data."
     }
-    
+
     else{
       if (balance != 0) {
         balance = new Date(balance * 1000).toLocaleString()
@@ -47,7 +47,8 @@ function checkLastDateWithdrawn() {
         document.getElementById("getValueStateSmartContract").innerHTML = "You have not yet withdrawn from the Lukso L16 LINK faucet."
       }
     }
-  })}
+  })
+}
 
 // return the last time the person withdrew from our faucet
 async function getAccount() {
@@ -110,20 +111,36 @@ changeStateInContractEvent.addEventListener('click', () => {
 //  if(Number.isInteger(inputContractText) == false){
 //    alert("Input value is not an integer! Only put an integer for input.")
 //  }
-  ethereum
-    .request({
-      method: 'eth_sendTransaction',
-      params: [
-        {
-          from: accounts[0],
-          to: contractAddress_JS,
-          data: contractDefined_JS.methods.withdrawDirect().encodeABI()
-        },
-      ],
-    })
-    .then((txHash) => console.log(txHash))
-    .catch((error) => console.error);
-  
+
+contractDefined_JS.methods.userPreviousWithdrawTime(accounts[0]).call((err, balance) => {
+  if( parseInt(Date.now()-(43200*1000)) > ((balance)*1000) ) {
+    chainlinkInterfaceERC20_CONTRACT.methods.balanceOf(contractAddress_JS).call((err, contractLINKbalanceResult) => {
+      if(contractLINKbalanceResult > "20000000000000000000"){
+        ethereum
+          .request({
+            method: 'eth_sendTransaction',
+            params: [
+              {
+                from: accounts[0],
+                to: contractAddress_JS,
+                data: contractDefined_JS.methods.withdrawDirect().encodeABI()
+              },
+            ],
+          })
+          .then((txHash) => console.log(txHash))
+          .catch((error) => console.error);
+      }else{
+        alert("NEED AT LEAST 20 LINK THE FAUCET!")
+      }
+    });
+  }else{
+    alert("NEED TO WAIT THE FULL 12 HOURS AFTER YOUR LAST FAUCET WITHDRAW!")
+  }
+
+})
+
+
+
 });
 
 //Get the latest event. Once the event is triggered, website will update value.
