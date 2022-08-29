@@ -1,5 +1,25 @@
 # LuksOracle Website
 
+## Website Link
+
+Website (hosted on GitHub pages): https://luksoracle.github.io/frontend/
+
+:warning: Host on Fleek (IPFS/Filecoin) later :warning:
+
+Template being modified, work in progress.
+
+Run locally for testing with:
+
+       npm install http-server
+
+       http-server
+       OR
+       npx http-server
+       
+## :camera: Slide presentation:
+
+https://docs.google.com/presentation/d/1s1yyrKdPA75_q2RZRx3A8FxvknriruWgnGQb9-7QVNE/edit?usp=sharing
+
 ## :fountain: LINK Faucet
 
 Get 20 Chainlink (LINK) tokens every 12 hours.
@@ -51,22 +71,3 @@ If you hold multiple Twitter accounts to one wallet, you can change which Twitte
 
 :warning: We can verify Universal Profiles for Twitter IDs, but we don't have this shown in the frontend. See the scripts in the contracts repo for more info. :warning:
 
-## Website Link
-
-Github pages site hosting: https://luksoracle.github.io/frontend/
-
-:warning: Host on Fleek (IPFS/Filecoin) later :warning:
-
-Template being modified, work in progress.
-
-Run locally for testing with:
-
-       npm install http-server
-
-       http-server
-       OR
-       npx http-server
-       
-## :camera: Slide presentation:
-
-https://docs.google.com/presentation/d/1s1yyrKdPA75_q2RZRx3A8FxvknriruWgnGQb9-7QVNE/edit?usp=sharing
