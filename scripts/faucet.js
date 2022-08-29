@@ -130,7 +130,7 @@ contractDefined_JS.methods.userPreviousWithdrawTime(accounts[0]).call((err, bala
           .then((txHash) => console.log(txHash))
           .catch((error) => console.error);
       }else{
-        alert("NEED AT LEAST 20 LINK THE FAUCET!")
+        alert("NEED AT LEAST 20 LINK IN THE FAUCET!")
       }
     });
   }else{
