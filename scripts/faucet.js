@@ -108,7 +108,7 @@ changeStateInContractEvent.addEventListener('click', () => {
   checkAddressMissingMetamask()
 
   contractDefined_JS.methods.userPreviousWithdrawTime(accounts[0]).call((err, balance) => {
-    if( BigInt(Date.now()) > ((BigInt(balance)+43200n)*1000n) ) {
+    if( BigInt(Date.now()) > BigInt((BigInt(balance)+43200n)*1000n) ) {
       chainlinkInterfaceERC20_CONTRACT.methods.balanceOf(contractAddress_JS).call((err, contractLINKbalanceResult) => {
         if(contractLINKbalanceResult >= "20000000000000000000"){
           ethereum
@@ -129,7 +129,7 @@ changeStateInContractEvent.addEventListener('click', () => {
         }
       });
     }else{
-      alert("NEED TO WAIT THE FULL 12 HOURS AFTER YOUR LAST FAUCET WITHDRAW!")
+      alert("NEED TO WAIT THE FULL 12 HOURS AFTER YOUR LAST FAUCET WITHDRAW! SECONDS LEFT: " + BigInt((BigInt((BigInt(balance)+43200n)*1000n) -BigInt(Date.now()))/1000n) )
     }
 
   })
