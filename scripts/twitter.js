@@ -162,7 +162,7 @@ changeResolverInContractEvent.addEventListener('click', () => {
   var twitter_ID = document.getElementById("setValueSmartContract").value.toString();
 
   contractDefined_JS.methods.twitterIDaddress(twitter_ID).call((err, balance_) => {
-    if(accounts[0] == balance_.toLowerCase()) {
+    if(accounts[0].toLowerCase() == balance_.toLowerCase()) {
       ethereum
         .request({
           method: 'eth_sendTransaction',
