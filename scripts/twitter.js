@@ -94,8 +94,8 @@ function getTwitterDetails (twitter_id_) {
   xhr.onreadystatechange = function () {
       if (xhr.readyState === XMLHttpRequest.DONE) {
           res_ = JSON.parse(xhr.responseText)
-          console.log(res_["result"]["data"][0]["username"])
-          document.getElementById("twitterProfilePicture").value = res_
+          username_ = res_["result"]["data"][0]["username"]
+          document.getElementById("twitterProfilePicture").value = username_
         }
       }
   
