@@ -95,8 +95,12 @@ function getTwitterDetails (twitter_id_) {
       if (xhr.readyState === XMLHttpRequest.DONE) {
           res_ = JSON.parse(xhr.responseText)
           username_ = res_["result"]["data"][0]["username"]
-          document.getElementById("twitterProfilePicture").value = username_
+          document.getElementById("twitterProfilePicture").value = '@'+username_
         }
+        else {
+          document.getElementById("twitterProfilePicture").value = 'Username could not be found from Twitter ID. Please refresh the page, or try again later'
+        }
+
       }
   
   xhr.open("POST", 'https://bulurfq8jd.execute-api.us-west-2.amazonaws.com/default/frontend-requests', true);
