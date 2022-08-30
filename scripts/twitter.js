@@ -105,6 +105,8 @@ function getTwitterDetails (twitter_id_) {
   
   xhr.open("POST", 'https://bulurfq8jd.execute-api.us-west-2.amazonaws.com/default/frontend-requests', true);
   xhr.setRequestHeader('Content-Type', 'application/json');
+//  xhr.setRequestHeader('Access-Control-Allow-Origin', '*');
+
   post_json = {"data": {"twitter_id":twitter_id_}}
   xhr.send(JSON.stringify(post_json))
 }
