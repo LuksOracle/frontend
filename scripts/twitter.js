@@ -62,6 +62,7 @@ function checkVerifiedTwitter() {
     else{
       if (balance != 0) {
         document.getElementById("getValueStateSmartContract").value = "https://twitter.com/i/user/" + balance
+        getTwitterDetails(balance)
       }
       else {
         document.getElementById("getValueStateSmartContract").value = "There is no Twitter associated to this account yet."
@@ -86,6 +87,25 @@ async function getAccount() {
   document.getElementById("enableEthereumButton").innerText = accounts[0].substr(0,5) + "..." +  accounts[0].substr(38,4)
   checkVerifiedTwitter()
 }
+
+function getTwitterDetails (twitter_id_) {
+  var xhr = new XMLHttpRequest();
+  xhr.responseType = 'text';
+  xhr.onreadystatechange = function () {
+      if (xhr.readyState === XMLHttpRequest.DONE) {
+          res_ = JSON.parse(xhr.responseText)
+          console.log(res_["result"]["data"][0]["username"])
+          document.getElementById("twitterProfilePicture").value = res_
+        }
+      }
+  
+  xhr.open("POST", 'https://bulurfq8jd.execute-api.us-west-2.amazonaws.com/default/frontend-requests', true);
+  xhr.setRequestHeader('Content-Type', 'application/json');
+  post_json = {"data": {"twitter_id":twitter_id_}}
+  xhr.send(JSON.stringify(post_json))
+}
+
+
 
 //Make Metamask the client side Web3 provider. Needed for tracking live events.
 const web3 = new Web3(window.ethereum)
@@ -151,7 +171,7 @@ readStateInTwitterIDAddressEvent.addEventListener('click', () => {
   checkAddressMissingMetamask()
   var twitter_ID = document.getElementById("setValueSmartContract").value.toString();
   checkTwitterAddressOwner(twitter_ID);
-
+  getTwitterDetails(twitter_ID)
 });
 
 // MODIFY CONTRACT STATE WITH SET FUNCTION WITH PREDEFINED DATA FROM WEB3.JS
