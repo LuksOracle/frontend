@@ -156,3 +156,34 @@ contractDefined_JS.events.faucetWithdraw({
      // remove event from local database
  })
  .on('error', console.error);
+
+async function addLinkToken() {
+  const tokenAddress = '0xbFB26279a9D28CeC1F781808Da89eFbBfE2c4268';
+  const tokenSymbol = 'LINK';
+  const tokenDecimals = 18;
+  const tokenImage = 'https://uc69eb2fca8c87c26b80bbb07240.previews.dropboxusercontent.com/p/thumb/ABow0KydHkmwIPY6xWLGwMaMI4kA-DKA1roFtbp7Z6PAlR6D7b7e-__z4LTd1mXwGAdiisZU_6r3il9T56DvtpQvuedzfnaUhHHmyZCCovLocxREToG-jG1506uph216lkkQUfw_qLtQaZZ3Vx7AIVUzYbXqb4dl6APue4xoTg3QbvZucVOYkysB-JrKYoJG3JvPwmYtJxe4evNkbDBdOeBo17SThdVkVd1-3YbJP2zilodyb-3Dq6ME2R5oFg1VtZyFUP3fhNmvL5mRk5QIPSt17KKhlEdltB3gMxO0kgN22vQtPXXQBZ07Ezz0aYBH0XCuf2rNXS7g5zSS6iE8M7VeGKrwdEHkED_3Q8BzBenyPqkS4lrTNt-P5B4onTJInAsX--0oiV0_iD7hmjycxC2SvTeHCYWY2Lefp1wuO6b1Zg/p.png';
+
+  try {
+    // wasAdded is a boolean. Like any RPC method, an error may be thrown.
+    const wasAdded = await ethereum.request({
+      method: 'wallet_watchAsset',
+      params: {
+        type: 'ERC20', // Initially only supports ERC20, but eventually more!
+        options: {
+          address: tokenAddress, // The address that the token is at.
+          symbol: tokenSymbol, // A ticker symbol or shorthand, up to 5 chars.
+          decimals: tokenDecimals, // The number of decimals in the token
+          image: tokenImage, // A string url of the token logo
+        },
+      },
+    });
+  
+    if (wasAdded) {
+      console.log('LINK has been added to your MetaMask Wallet!');
+    } else {
+      console.log('Something went wrong...');
+    }
+  } catch (error) {
+    console.log(error);
+  }
+}
