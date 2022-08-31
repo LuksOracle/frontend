@@ -63,6 +63,10 @@ Universal Profile:
 (https://twitter.com/i/user/1563659416347430912)
 (https://github.com/LuksOracle)
 
+View Universal Profile Address In Detail:
+
+https://erc725-inspect.lukso.tech/inspect?address=0x8414F1BaC5fCdA2C274A4a78D0D62109f1Cbb6C8
+
 If you hold multiple Twitter accounts to one wallet, you can change which Twitter account your wallet directly resolves too as well.
 
 :warning: Contract must have at least 1 LINK token to do a request :warning:
