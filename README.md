@@ -9,10 +9,10 @@ Template being modified, work in progress.
 Run locally for testing with:
 
        npm install http-server
-
-       http-server
-       OR
+then
        npx http-server
+or
+       http-server
        
 ## :camera: Slide presentation:
 
